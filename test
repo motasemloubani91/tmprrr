@@ -397,3 +397,35 @@ namespace CMSAdmin.Authentication
         </NotFound>
     </Router>
 </CascadingAuthenticationState>
+
+
+
+
+
+
+@inject NavigationManager navManager
+@code {
+    [CascadingParameter]
+    private Task<AuthenticationState> AuthenticationStateTask { get; set; }
+
+
+    private string baseUrl;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var authenticationState = await AuthenticationStateTask;
+        baseUrl = _Configuration["baseUrl"];
+        if (!string.IsNullOrWhiteSpace(baseUrl))
+            baseUrl = string.Concat("/", baseUrl);
+
+        if (authenticationState?.User?.Identity is null || !authenticationState.User.Identity.IsAuthenticated)
+        {
+            navManager.NavigateTo($"{baseUrl}/login", true);
+        }
+        else
+        {
+            navManager.NavigateTo($"{baseUrl}/home", true);
+        }
+    }
+}
