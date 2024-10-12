@@ -376,3 +376,24 @@ namespace CMSAdmin.Authentication
         RedirectToLogin();
     }
 
+
+
+<CascadingAuthenticationState>
+    <Router AppAssembly="typeof(Program).Assembly">
+        <Found Context="routeData">
+            <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
+                <NotAuthorized>
+                    not auth
+                    <RedirectToLogin />
+                </NotAuthorized>
+            </AuthorizeRouteView>
+            <FocusOnNavigate RouteData="routeData" Selector="h1" />
+        </Found>
+        <NotFound>
+            <PageTitle> Not Found </PageTitle>
+            <LayoutView Layout="typeof(Layout.MainLayout)">
+                <p role="alert"> Sorry No Data Here  </p>
+            </LayoutView>
+        </NotFound>
+    </Router>
+</CascadingAuthenticationState>
