@@ -1,431 +1,74 @@
-using CMSAdmin.Models.Authentication;
-using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Server.ProtectedBrowserStorage;
-using System.Security.Claims;
-
-namespace CMSAdmin.Authentication
-{
-
-    public class CustomAuthentication : AuthenticationStateProvider
-    {
-        private readonly ProtectedSessionStorage _sessionStorage;
-        private readonly ClaimsPrincipal _AnonymousClaimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity());
-        private const string _sessionIdKey = "SessionDetails";
-        private readonly IHttpContextAccessor _httpContextAccessor;
-
-        private ISession Session => _httpContextAccessor.HttpContext.Session;
-
-        public CustomAuthentication(ProtectedSessionStorage sessionStorage, IHttpContextAccessor httpContextAccessor)
-        {
-            _sessionStorage = sessionStorage;
-            _httpContextAccessor = httpContextAccessor;
-        }
-
-        public override async Task<AuthenticationState> GetAuthenticationStateAsync()
-        {
-            try
-            {
-                var userSessionStorageResult = await _sessionStorage.GetAsync<UserSession>(_sessionIdKey);
-                var userSession = userSessionStorageResult.Success ? userSessionStorageResult.Value : null;
-                if (userSession is null)
-                {
-                    return await Task.FromResult(new AuthenticationState(_AnonymousClaimsPrincipal));
-                }
-
-                var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
-                {
-                    new  (ClaimTypes.Name,userSession.UserName),
-                    new  (ClaimTypes.Role,userSession.Role),
-                    new  ("FullName",userSession.FullName),
-                    new  (ClaimTypes.NameIdentifier,userSession.UserId)
-                }, "CustomAuth"));
-
-                return await Task.FromResult(new AuthenticationState(claimsPrincipal));
-            }
-            catch
-            {
-
-                return await Task.FromResult(new AuthenticationState(_AnonymousClaimsPrincipal));
-            }
-
-        }
-        private async Task UpdateAuthinticationState(UserSession? userSession = null)
-        {
-            ClaimsPrincipal claimsPrincipal = null;
-            if (userSession != null)
-            {
-                await _sessionStorage.SetAsync(_sessionIdKey, userSession);
-
-                claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim> {
-                new(ClaimTypes.Name,userSession.UserName),
-                new(ClaimTypes.Role,userSession.Role),
-                new("FullName",userSession.FullName),
-                new(ClaimTypes.NameIdentifier,userSession.UserId)
-                }));
-            }
-            else
-            {
-                await _sessionStorage.DeleteAsync(_sessionIdKey);
-                claimsPrincipal = _AnonymousClaimsPrincipal;
-            }
-
-            NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
-
-        }
-
-        public async Task SetAuthenticationState(UserSession userSession)
-        {
-            await UpdateAuthinticationState(userSession);
-        }
-
-        public async Task RemoveAuthenticationState()
-        {
-            await UpdateAuthinticationState();
-        }
-    }
-
-}
+<AuthorizeView>
+    <Authorized>
+        <Spinner IsVisible="IsSpinnerVisible" />
+        <div class="d-flex full-height">
+            <NavMenu></NavMenu>
+            <div class="flex-grow-1">
+                <header class="px-2">
+                    <AdminHeader></AdminHeader>
+                </header>
+                <main class="px-2">
+                    @* @context.User.Identity.Name *@
 
 
+                    <BlazoredToasts Position="ToastPosition.TopRight"
+                                    Timeout="10"
+                                    IconType="IconType.FontAwesome"
+                                    SuccessClass="success-toast-override"
+                                    SuccessIcon="fa fa-thumbs-up"
+                                    ErrorIcon="fa fa-bug"
+                                    ShowProgressBar="true" />
 
+                    <CustomErrorBoundary @ref="errorBoundary">
+                        <ChildContent>
+                            <div class="container">
+                                @Body
+                            </div>
+                        </ChildContent>
 
+                        <ErrorContent Context="Exception">
+                            <div class="alert alert-primary">
+                                <h3> @Localizer["ErrorBounderyOccurred"]</h3>
+                                <button class="btn btn-info" @onclick="() => errorBoundary.Recover()"> @Localizer["BtnTryAgain"]</button>
+                            </div>
 
-@page "/login";
+                        </ErrorContent>
 
-@page "/{param1}/login"
+                    </CustomErrorBoundary>
 
-@using CMSAdmin.Kernel.Core.Wrappers
-@using CMSAdmin.Kernel.Domain.FeedbackDomainServices
-@using CMSAdmin.Kernel.Domain.Shared
-@using CMSAdmin.Kernel.Service.Dtos
-@using CMSAdmin.Kernel.Service.Dtos.NewsServiceDto
-@using CMSAdmin.Kernel.Domain.UserManagementDomin.Entities
-@using System.Timers
-@inject UserAccountService userAccountService;
-@inject LoginService loginService;
-@inject IJSRuntime Js;
-@inject AuthenticationStateProvider authStateProvider;
-@inject NavigationManager navManager;
-@inject NewsServices newsServices;
-@inject EventsService eventServices;
-@inject FeedbackService feedback;
-@inject UserManagementService test;
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-<div class="row mx-2 pt-4 d-flex justify-content-center ">
-
-    <div class="col-lg-4 col-md-8 col-sm-11 px-4 pt-4 border">
-        <div class="mb-2 d-flex justify-content-center">
-            <img class="bg-white rounded-circle"
-                 style="width: 35%"
-                 src="./Resources/Images/Logo.jpg"
-                 alt="logo icon" />
-        </div>
-        <h5 class="text-center"> @Localizer["Customs_Website_Admin"]  </h5>
-        <hr />
-        <div class="mb-3 pt-3 text-center">
-            <h3> @Localizer["Login"]  </h3>
-        </div>
-        <div class="mb-3">
-            <label> @Localizer["UserName"]</label>
-            <input @bind="_loginModel.Username" class="form-control" placeholder=@Localizer["UserName"] />
-        </div>
-@*         <div class="mb-3">
-            <label>  @Localizer["Password"] </label>
-            <input type="password" @bind="_loginModel.Password" class="form-control" placeholder=@Localizer["Password"] />
-        </div>
-
- *@
-        <div class="mb-3">
-            <label>  @Localizer["Password"] </label>
-
-            <div class="position-relative">
-                <input type="@passwordInputType" @bind="_loginModel.Password" class="form-control" placeholder=@Localizer["Password"] />
-
-                <button type="button" class="btn no-shadow position-absolute top-0 end-0  border-0"
-                        @onclick="TogglePasswordVisibility">
-                    <i class='bi @(isPasswordVisible ? "bi-eye-slash" : "bi-eye")'></i>
-                </button>
+                    <div style="margin-top: 160px">
+                        <footer class="px-2 d-flex justify-content-between align-items-center">
+                            <p class="text-muted fw-lighter mb-0" style="font-size: 14px">
+                                الادارة العامة للجمارك - 2024
+                            </p>
+                        </footer>
+                    </div>
+                </main>
             </div>
         </div>
+    </Authorized>
+    <NotAuthorized>
+        <Spinner IsVisible="IsSpinnerVisible" />
+        <CustomErrorBoundary @ref="errorBoundary">
+            <ChildContent>
+                <BlazoredToasts Position="ToastPosition.TopRight"
+                                Timeout="10"
+                                IconType="IconType.FontAwesome"
+                                SuccessClass="success-toast-override"
+                                SuccessIcon="fa fa-thumbs-up"
+                                ErrorIcon="fa fa-bug"
+                                ShowProgressBar="true" />
+                <Login></Login>
+            </ChildContent>
 
-        <div class="mb-3 pt-3 text-center">
-            <div class="g-recaptcha" data-sitekey="6LewZcQjAAAAAEzzGtMxqQjedTqFtTkF7LA85V5W" @ref="recaptchaRef" @onchange="OnRecaptchaChanged"></div>
-        </div>
+            <ErrorContent Context="Exception">
+                <div class="alert alert-primary">
+                    <h3> @Localizer["ErrorBounderyOccurred"]</h3>
+                    <button class="btn btn-info" @onclick="() => errorBoundary.Recover()"> @Localizer["BtnTryAgain"]</button>
+                </div>
 
-        <div class="mb-3 d-grid gap-2">
-            <button  class="btn btn-primary" @onclick="Authenticate"> @Localizer["BtnLogin"]  </button>
-        </div>
-        @*   <div class="mb-3 py-3 text-center">
-        <label class="mb-3">  @Localizer["QRCode"] </label>
-        <br />
-        <img width="300px" height="300px" src="@qrSrc" />
-        </div>
-        <div class="mb-3 d-grid gap-2">
-        <button class="btn btn-primary" @onclick="ReGenerateQR"> @Localizer["BtnRegenerateQR"]  </button>
-        </div> *@
-        <div class="mb-3 text-center">
-            <LanguageSelector @rendermode="InteractiveServer" />
-        </div>
+            </ErrorContent>
 
-    </div>
-</div>
-@code
-{
-
-    [CascadingParameter]
-    private Task<AuthenticationState> AuthenticationStateTask { get; set; }
-
-    [Parameter]
-    public string param1 { get; set; }
-    private string baseUrl;
-    private ElementReference recaptchaRef;
-    public string recaptchaResponse { get; set; }
-    private class LoginModel
-    {
-        public string Username { get; set; }
-        public string Password { get; set; }
-    }
-    private string qrSrc = "";
-    private System.Timers.Timer _timer = new(1000);
-    private int elapsedTime = 0;
-    private int KGACPACIQueueId;
-    LoginModel _loginModel = new LoginModel();
-
-    private async Task ReGenerateQR()
-    {
-        SpinnerService.Show();
-        var QrCodeDetails = await loginService.GenerateLoginQRcode();
-        if (QrCodeDetails.Succeeded && QrCodeDetails.Data != null)
-        {
-            qrSrc = QrCodeDetails.Data.QrCode;
-            KGACPACIQueueId = QrCodeDetails.Data.KGACPACIQueueId;
-            SpinnerService.Hide();
-            var authenticationState = await AuthenticationStateTask;
-            if (await CheckScannedQrCode())
-            {
-                navManager.NavigateTo($"{baseUrl}/home", true);
-            };
-        }
-        else
-        {
-            SpinnerService.Hide();
-            toastService.ShowError(QrCodeDetails.Message);
-        }
-
-
-    }
-    private async Task OnRecaptchaChanged()
-    {
-        recaptchaResponse = await Js.InvokeAsync<string>("grecaptcha.getResponse");
-        StateHasChanged();
-    }
-
-    private async Task Authenticate()
-    {
-        SpinnerService.Show();
-        recaptchaResponse = await Js.InvokeAsync<string>("grecaptcha.getResponse");
-        if (string.IsNullOrEmpty(recaptchaResponse))
-        {
-            SpinnerService.Hide();
-            toastService.ShowError(@Localizer["SelectRECAPTCHA"]);
-            return;
-        }
-        // var userAccount = userAccountService.GetByUserName(_loginModel.Username);
-        var result = await loginService.Login(_loginModel.Username, _loginModel.Password);
-        if (result.Succeeded)
-        {
-            SpinnerService.Hide();
-            var userAccount = result.Data;
-
-
-            // if (userAccount == null || userAccount.Password != _loginModel.Password)
-            // {
-            //     // await Js.InvokeVoidAsync("Alert", "Invalid User Name Or Password");
-            //     return;
-            // }
-
-            var customAuthStateProvider = (CustomAuthentication)authStateProvider;
-            // var sessionIdValue = Guid.NewGuid().ToString(); // Generate a session ID
-            await customAuthStateProvider.SetAuthenticationState(new UserSession
-                {
-                    UserName = userAccount.UserName,
-                    Role = userAccount.Role,
-                    FullName = userAccount.Name,
-                    UserId = userAccount.Id.ToString()
-                });
-
-            navManager.NavigateTo($"{baseUrl}/home", true);
-        }
-        else
-        {
-            SpinnerService.Hide();
-            toastService.ShowError(result.Message);
-        }
-
-    }
-
-
-
-    protected override async Task OnInitializedAsync()
-    {
-        baseUrl = _Configuration["baseUrl"];
-        if (!string.IsNullOrWhiteSpace(baseUrl))
-            baseUrl = string.Concat("/", baseUrl);
-
-        // SpinnerService.Show();
-        // var QRDTO = await loginService.GenerateLoginQRcode();
-        // if (QRDTO.Succeeded)
-        // {
-        //     qrSrc = QRDTO.Data.QrCode;
-        //     KGACPACIQueueId = 160273;//QRDTO.Data.KGACPACIQueueId;
-        // }
-        // SpinnerService.Show();
-
-        var authenticationState = await AuthenticationStateTask;
-        // if (await CheckScannedQrCode())
-        // {
-        //     navManager.NavigateTo($"{baseUrl}/home", true);
-        // };
-        // var x = await GetNewsData();
-        if (authenticationState.User.Identity.IsAuthenticated)
-        {
-            navManager.NavigateTo($"{baseUrl}/home", true);
-        }
-    }
-    private async Task<bool> CheckScannedQrCode()
-    {
-        SpinnerService.Show();
-        var userDetails = await loginService.IsScannedQrCode(KGACPACIQueueId.ToString());
-        if (userDetails.Succeeded)
-        {
-            SpinnerService.Hide();
-            _timer.Enabled = false;
-            var customAuthStateProvider = (CustomAuthentication)authStateProvider;
-            await customAuthStateProvider.SetAuthenticationState(new UserSession
-                {
-                    UserName = userDetails.Data.UserName,
-                    Role = userDetails.Data.Role,
-                    FullName = userDetails.Data.Name,
-                    UserId = userDetails.Data.Id.ToString()
-                });
-
-            return true;
-        }
-        else
-        {
-            SpinnerService.Hide();
-            toastService.ShowError(userDetails.Message);
-            _timer.Elapsed += OnTimerElapsed;
-            _timer.AutoReset = true;
-            _timer.Enabled = true;
-            return false;
-        }
-    }
-    private async void OnTimerElapsed(object sender, ElapsedEventArgs e)
-    {
-        elapsedTime++;
-    }
-
-    public void Dispose()
-    {
-        _timer?.Dispose();
-    }
-
-     private bool isPasswordVisible = false;
-
-     private string passwordInputType => isPasswordVisible ? "text" : "password";
-
-    private void TogglePasswordVisibility()
-    {
-        isPasswordVisible = !isPasswordVisible;
-    }
-    // protected override async Task OnAfterRenderAsync(bool firstRender)
-    // {
-    //     if (firstRender)
-    //     {
-    //         var authenticationState = await AuthenticationStateTask;
-    //         if (authenticationState.User.Identity.IsAuthenticated)
-    //         {
-    //             navManager.NavigateTo($"{baseUrl}/home", true);
-    //         }
-    //     }
-    // }
-
-
-    //    private async Task<Response<List<AddUpdateNewsServiceDto>>> GetNewsData()
-    // {
-    //     return await newsServices.GetNewsList();
-    // }
-}
-
-
-
-
-  <a @onclick="Logout" class="text-capitalize mb-0 fw-medium btn text-white"
-     style="background-color: #e41836; width:100%">
-      <i class="bi bi-box-arrow-left me-2"></i>
-      @Localizer["LogOut"]
-  </a>
-
-
-    private async Task Logout()
-    {
-        var customAuthStateProvider = (CustomAuthentication)authStateProvider;
-        await customAuthStateProvider.RemoveAuthenticationState();
-        RedirectToLogin();
-    }
-
-
-
-<CascadingAuthenticationState>
-    <Router AppAssembly="typeof(Program).Assembly">
-        <Found Context="routeData">
-            <AuthorizeRouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)">
-                <NotAuthorized>
-                    not auth
-                    <RedirectToLogin />
-                </NotAuthorized>
-            </AuthorizeRouteView>
-            <FocusOnNavigate RouteData="routeData" Selector="h1" />
-        </Found>
-        <NotFound>
-            <PageTitle> Not Found </PageTitle>
-            <LayoutView Layout="typeof(Layout.MainLayout)">
-                <p role="alert"> Sorry No Data Here  </p>
-            </LayoutView>
-        </NotFound>
-    </Router>
-</CascadingAuthenticationState>
-
-
-
-
-
-
-@inject NavigationManager navManager
-@code {
-    [CascadingParameter]
-    private Task<AuthenticationState> AuthenticationStateTask { get; set; }
-
-
-    private string baseUrl;
-
-    protected override async Task OnInitializedAsync()
-    {
-
-        var authenticationState = await AuthenticationStateTask;
-        baseUrl = _Configuration["baseUrl"];
-        if (!string.IsNullOrWhiteSpace(baseUrl))
-            baseUrl = string.Concat("/", baseUrl);
-
-        if (authenticationState?.User?.Identity is null || !authenticationState.User.Identity.IsAuthenticated)
-        {
-            navManager.NavigateTo($"{baseUrl}/login", true);
-        }
-        else
-        {
-            navManager.NavigateTo($"{baseUrl}/home", true);
-        }
-    }
-}
+        </CustomErrorBoundary>
+    </NotAuthorized>
+</AuthorizeView>
