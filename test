@@ -1,74 +1,733 @@
-<AuthorizeView>
-    <Authorized>
-        <Spinner IsVisible="IsSpinnerVisible" />
-        <div class="d-flex full-height">
-            <NavMenu></NavMenu>
-            <div class="flex-grow-1">
-                <header class="px-2">
-                    <AdminHeader></AdminHeader>
-                </header>
-                <main class="px-2">
-                    @* @context.User.Identity.Name *@
+using FluentValidation;
+using MCAntiCorruptionLayer.Kernel.Core.Wrappers;
+using MediatR;
+using Newtonsoft.Json;
+using System.Xml.Serialization;
 
+namespace MCAntiCorruptionLayer.VehicleAuthorization.Application.Features.V1.Queries.ViewVehicleAuthorization
+{
+    public record ViewVehicleAuthorizationQuery(string formId) : IRequest<Response<ServiceDocument<dataDto, domaindataDto>>>;
 
-                    <BlazoredToasts Position="ToastPosition.TopRight"
-                                    Timeout="10"
-                                    IconType="IconType.FontAwesome"
-                                    SuccessClass="success-toast-override"
-                                    SuccessIcon="fa fa-thumbs-up"
-                                    ErrorIcon="fa fa-bug"
-                                    ShowProgressBar="true" />
+    public sealed class ViewVehicleAuthorizationQueryValidator : AbstractValidator<ViewVehicleAuthorizationQuery>
+    {
+        public ViewVehicleAuthorizationQueryValidator()
+        {
+        }
+    }
 
-                    <CustomErrorBoundary @ref="errorBoundary">
-                        <ChildContent>
-                            <div class="container">
-                                @Body
-                            </div>
-                        </ChildContent>
+    // Root classes
+    [XmlRoot("data")]
+    public class dataDto
+    {
+        [XmlElement("VehAuthFormsrecords")]
+        [JsonProperty("VehAuthFormsRecords")]
+        public VehAuthFormsRecords VehAuthFormsRecords { get; set; }
+    }
 
-                        <ErrorContent Context="Exception">
-                            <div class="alert alert-primary">
-                                <h3> @Localizer["ErrorBounderyOccurred"]</h3>
-                                <button class="btn btn-info" @onclick="() => errorBoundary.Recover()"> @Localizer["BtnTryAgain"]</button>
-                            </div>
+    [XmlRoot("domaindata")]
+    public class domaindataDto
+    {
+        [XmlElement("select")]
+        [JsonProperty("select")]
+        public Select PaymentTypes { get; set; }
+    }
 
-                        </ErrorContent>
+    // Main records container
+    public class VehAuthFormsRecords
+    {
+        [XmlAttribute("PageSize")]
+        [JsonProperty("PageSize")]
+        public int PageSize { get; set; }
 
-                    </CustomErrorBoundary>
+        [XmlAttribute("PageCount")]
+        [JsonProperty("PageCount")]
+        public int PageCount { get; set; }
 
-                    <div style="margin-top: 160px">
-                        <footer class="px-2 d-flex justify-content-between align-items-center">
-                            <p class="text-muted fw-lighter mb-0" style="font-size: 14px">
-                                الادارة العامة للجمارك - 2024
-                            </p>
-                        </footer>
-                    </div>
-                </main>
-            </div>
-        </div>
-    </Authorized>
-    <NotAuthorized>
-        <Spinner IsVisible="IsSpinnerVisible" />
-        <CustomErrorBoundary @ref="errorBoundary">
-            <ChildContent>
-                <BlazoredToasts Position="ToastPosition.TopRight"
-                                Timeout="10"
-                                IconType="IconType.FontAwesome"
-                                SuccessClass="success-toast-override"
-                                SuccessIcon="fa fa-thumbs-up"
-                                ErrorIcon="fa fa-bug"
-                                ShowProgressBar="true" />
-                <Login></Login>
-            </ChildContent>
+        [XmlAttribute("PageNumber")]
+        [JsonProperty("PageNumber")]
+        public int PageNumber { get; set; }
 
-            <ErrorContent Context="Exception">
-                <div class="alert alert-primary">
-                    <h3> @Localizer["ErrorBounderyOccurred"]</h3>
-                    <button class="btn btn-info" @onclick="() => errorBoundary.Recover()"> @Localizer["BtnTryAgain"]</button>
-                </div>
+        [XmlAttribute("TotalRecordsFetched")]
+        [JsonProperty("TotalRecordsFetched")]
+        public int TotalRecordsFetched { get; set; }
 
-            </ErrorContent>
+        [XmlElement("VehAuthForms")]
+        [JsonProperty("VehAuthForms")]
+        public List<VehAuthForm> VehAuthForms { get; set; }
 
-        </CustomErrorBoundary>
-    </NotAuthorized>
-</AuthorizeView>
+        [XmlElement("WorkflowItemStatesrecords")]
+        [JsonProperty("WorkflowItemStatesrecords")]
+        public WorkflowItemStatesRecords WorkflowItemStatesrecords { get; set; }
+
+        [XmlElement("Locationsrecords")]
+        [JsonProperty("Locationsrecords")]
+        public LocationsRecords Locationsrecords { get; set; }
+
+        [XmlElement("VehicleTyperecords")]
+        [JsonProperty("VehicleTyperecords")]
+        public VehicleTypeRecords VehicleTyperecords { get; set; }
+
+        [XmlElement("PassengerDocTyperecords")]
+        [JsonProperty("PassengerDocTyperecords")]
+        public PassengerDocTypeRecords PassengerDocTyperecords { get; set; }
+
+        [XmlElement("PassengerDocTypeArecords")]
+        [JsonProperty("PassengerDocTypeArecords")]
+        public PassengerDocTypeARecords PassengerDocTypeArecords { get; set; }
+    }
+
+    // Vehicle Authorization Form
+    public class VehAuthForm
+    {
+        [XmlAttribute("RowNumber")]
+        [JsonProperty("RowNumber")]
+        public int RowNumber { get; set; }
+
+        [XmlAttribute("IdTypeDetails")]
+        [JsonProperty("IdTypeDetails")]
+        public string IdTypeDetails { get; set; }
+
+        [XmlAttribute("AuthorizationType")]
+        [JsonProperty("AuthorizationType")]
+        public string AuthorizationType { get; set; }
+
+        [XmlAttribute("VehAuthFormDate")]
+        [JsonProperty("VehAuthFormDate")]
+        public DateTime VehAuthFormDate { get; set; }
+
+        [XmlAttribute("EngineNo")]
+        [JsonProperty("EngineNo")]
+        public string EngineNo { get; set; }
+
+        [XmlAttribute("OwnerName")]
+        [JsonProperty("OwnerName")]
+        public string OwnerName { get; set; }
+
+        [XmlAttribute("OwnerIdNo")]
+        [JsonProperty("OwnerIdNo")]
+        public string OwnerIdNo { get; set; }
+
+        [XmlAttribute("DriverName")]
+        [JsonProperty("DriverName")]
+        public string DriverName { get; set; }
+
+        [XmlAttribute("VehAuthFormNo")]
+        [JsonProperty("VehAuthFormNo")]
+        public string VehAuthFormNo { get; set; }
+
+        [XmlAttribute("Model")]
+        [JsonProperty("Model")]
+        public string Model { get; set; }
+
+        [XmlAttribute("VehicleMake")]
+        [JsonProperty("VehicleMake")]
+        public string VehicleMake { get; set; }
+
+        [XmlAttribute("TravelTimes")]
+        [JsonProperty("TravelTimes")]
+        public string TravelTimes { get; set; }
+
+        [XmlAttribute("Color")]
+        [JsonProperty("Color")]
+        public string Color { get; set; }
+
+        [XmlAttribute("IdNumber")]
+        [JsonProperty("IdNumber")]
+        public string IdNumber { get; set; }
+
+        [XmlAttribute("TravelUpto")]
+        [JsonProperty("TravelUpto")]
+        public DateTime TravelUpto { get; set; }
+
+        [XmlAttribute("selected")]
+        [JsonProperty("selected")]
+        public string Selected { get; set; }
+
+        [XmlAttribute("ChasisNo")]
+        [JsonProperty("ChasisNo")]
+        public string ChasisNo { get; set; }
+
+        [XmlAttribute("OwnerOrgId")]
+        [JsonProperty("OwnerOrgId")]
+        public string OwnerOrgId { get; set; }
+
+        [XmlAttribute("CreatedBy")]
+        [JsonProperty("CreatedBy")]
+        public string CreatedBy { get; set; }
+
+        [XmlAttribute("DateOfId")]
+        [JsonProperty("DateOfId")]
+        public DateTime DateOfId { get; set; }
+
+        [XmlAttribute("PlateNo")]
+        [JsonProperty("PlateNo")]
+        public string PlateNo { get; set; }
+
+        [XmlAttribute("LocationId")]
+        [JsonProperty("LocationId")]
+        public string LocationId { get; set; }
+
+        [XmlAttribute("IdTypeId")]
+        [JsonProperty("IdTypeId")]
+        public string IdTypeId { get; set; }
+
+        [XmlAttribute("VehicleTypeId")]
+        [JsonProperty("VehicleTypeId")]
+        public string VehicleTypeId { get; set; }
+
+        [XmlAttribute("StateId")]
+        [JsonProperty("StateId")]
+        public string StateId { get; set; }
+
+        [XmlAttribute("OwnerLocId")]
+        [JsonProperty("OwnerLocId")]
+        public string OwnerLocId { get; set; }
+
+        [XmlAttribute("OwnerIdType")]
+        [JsonProperty("OwnerIdType")]
+        public string OwnerIdType { get; set; }
+
+        [XmlAttribute("ModeOfCreation")]
+        [JsonProperty("ModeOfCreation")]
+        public string ModeOfCreation { get; set; }
+
+        [XmlAttribute("VehCreatedDate")]
+        [JsonProperty("VehCreatedDate")]
+        public DateTime VehCreatedDate { get; set; }
+
+        [XmlAttribute("OpenTime")]
+        [JsonProperty("OpenTime")]
+        public DateTime OpenTime { get; set; }
+
+        [XmlAttribute("VehAuthFormId")]
+        [JsonProperty("VehAuthFormId")]
+        public string VehAuthFormId { get; set; }
+
+        [XmlAttribute("TicketNumber")]
+        [JsonProperty("TicketNumber")]
+        public string TicketNumber { get; set; }
+
+        [XmlAttribute("IssuingAuthority")]
+        [JsonProperty("IssuingAuthority")]
+        public string IssuingAuthority { get; set; }
+
+        [XmlAttribute("RejectRemarks")]
+        [JsonProperty("RejectRemarks")]
+        public string RejectRemarks { get; set; }
+
+        [XmlAttribute("PaymentMethod")]
+        [JsonProperty("PaymentMethod")]
+        public string PaymentMethod { get; set; }
+
+        [XmlAttribute("KNetReceiptNo")]
+        [JsonProperty("KNetReceiptNo")]
+        public string KNetReceiptNo { get; set; }
+
+        [XmlAttribute("ReceiptDate")]
+        [JsonProperty("ReceiptDate")]
+        public string ReceiptDate { get; set; }
+
+        [XmlAttribute("MCOnlinePayments")]
+        [JsonProperty("MCOnlinePayments")]
+        public string MCOnlinePayments { get; set; }
+
+        [XmlAttribute("MCGCSOnlinePayments")]
+        [JsonProperty("MCGCSOnlinePayments")]
+        public string MCGCSOnlinePayments { get; set; }
+
+        [XmlAttribute("MCPaymentsVA")]
+        [JsonProperty("MCPaymentsVA")]
+        public string MCPaymentsVA { get; set; }
+
+        [XmlAttribute("MCVAReceipts")]
+        [JsonProperty("MCVAReceipts")]
+        public string MCVAReceipts { get; set; }
+
+        [XmlElement("MCPaymentsVArecords")]
+        [JsonProperty("MCPaymentsVArecords")]
+        public MCPaymentsVARecords MCPaymentsVArecords { get; set; }
+    }
+
+    // MC Payments VA Records
+    public class MCPaymentsVARecords
+    {
+        [XmlAttribute("PageSize")]
+        [JsonProperty("PageSize")]
+        public int PageSize { get; set; }
+
+        [XmlAttribute("PageCount")]
+        [JsonProperty("PageCount")]
+        public int PageCount { get; set; }
+
+        [XmlAttribute("PageNumber")]
+        [JsonProperty("PageNumber")]
+        public int PageNumber { get; set; }
+
+        [XmlAttribute("TotalRecordsFetched")]
+        [JsonProperty("TotalRecordsFetched")]
+        public int TotalRecordsFetched { get; set; }
+    }
+
+    // Workflow Item States Records
+    public class WorkflowItemStatesRecords
+    {
+        [XmlAttribute("PageSize")]
+        [JsonProperty("PageSize")]
+        public int PageSize { get; set; }
+
+        [XmlAttribute("PageCount")]
+        [JsonProperty("PageCount")]
+        public int PageCount { get; set; }
+
+        [XmlAttribute("PageNumber")]
+        [JsonProperty("PageNumber")]
+        public int PageNumber { get; set; }
+
+        [XmlAttribute("TotalRecordsFetched")]
+        [JsonProperty("TotalRecordsFetched")]
+        public int TotalRecordsFetched { get; set; }
+
+        [XmlElement("WorkflowItemStates")]
+        [JsonProperty("WorkflowItemStates")]
+        public List<WorkflowItemState> WorkflowItemStates { get; set; }
+    }
+
+    public class WorkflowItemState
+    {
+        [XmlAttribute("StateName")]
+        [JsonProperty("StateName")]
+        public string StateName { get; set; }
+
+        [XmlAttribute("StateId")]
+        [JsonProperty("StateId")]
+        public string StateId { get; set; }
+
+        [XmlAttribute("selected")]
+        [JsonProperty("selected")]
+        public string Selected { get; set; }
+
+        [XmlAttribute("OpenTime")]
+        [JsonProperty("OpenTime")]
+        public DateTime OpenTime { get; set; }
+
+        [XmlAttribute("OwnerLocId")]
+        [JsonProperty("OwnerLocId")]
+        public string OwnerLocId { get; set; }
+
+        [XmlAttribute("CreatedBy")]
+        [JsonProperty("CreatedBy")]
+        public string CreatedBy { get; set; }
+
+        [XmlAttribute("OwnerOrgId")]
+        [JsonProperty("OwnerOrgId")]
+        public string OwnerOrgId { get; set; }
+    }
+
+    // Locations Records
+    public class LocationsRecords
+    {
+        [XmlAttribute("PageSize")]
+        [JsonProperty("PageSize")]
+        public int PageSize { get; set; }
+
+        [XmlAttribute("PageCount")]
+        [JsonProperty("PageCount")]
+        public int PageCount { get; set; }
+
+        [XmlAttribute("PageNumber")]
+        [JsonProperty("PageNumber")]
+        public int PageNumber { get; set; }
+
+        [XmlAttribute("TotalRecordsFetched")]
+        [JsonProperty("TotalRecordsFetched")]
+        public int TotalRecordsFetched { get; set; }
+
+        [XmlElement("Locations")]
+        [JsonProperty("Locations")]
+        public List<Location> Locations { get; set; }
+    }
+
+    public class Location
+    {
+        [XmlAttribute("LocationId")]
+        [JsonProperty("LocationId")]
+        public string LocationId { get; set; }
+
+        [XmlAttribute("LocationCode")]
+        [JsonProperty("LocationCode")]
+        public string LocationCode { get; set; }
+
+        [XmlAttribute("Name")]
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("Description")]
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [XmlAttribute("CreatedBy")]
+        [JsonProperty("CreatedBy")]
+        public string CreatedBy { get; set; }
+
+        [XmlAttribute("selected")]
+        [JsonProperty("selected")]
+        public string Selected { get; set; }
+
+        [XmlAttribute("StateId")]
+        [JsonProperty("StateId")]
+        public string StateId { get; set; }
+
+        [XmlAttribute("OwnerOrgId")]
+        [JsonProperty("OwnerOrgId")]
+        public string OwnerOrgId { get; set; }
+
+        [XmlAttribute("OwnerLocId")]
+        [JsonProperty("OwnerLocId")]
+        public string OwnerLocId { get; set; }
+
+        [XmlAttribute("CountryNumber")]
+        [JsonProperty("CountryNumber")]
+        public string CountryNumber { get; set; }
+
+        [XmlAttribute("ParentId")]
+        [JsonProperty("ParentId")]
+        public string ParentId { get; set; }
+
+        [XmlAttribute("LocalDescription")]
+        [JsonProperty("LocalDescription")]
+        public string LocalDescription { get; set; }
+
+        [XmlAttribute("IsLocalPort")]
+        [JsonProperty("IsLocalPort")]
+        public string IsLocalPort { get; set; }
+
+        [XmlAttribute("LocationTypeId")]
+        [JsonProperty("LocationTypeId")]
+        public string LocationTypeId { get; set; }
+
+        [XmlAttribute("OpenTime")]
+        [JsonProperty("OpenTime")]
+        public DateTime OpenTime { get; set; }
+
+        [XmlAttribute("UNCode")]
+        [JsonProperty("UNCode")]
+        public string UNCode { get; set; }
+
+        [XmlAttribute("ExitPoint")]
+        [JsonProperty("ExitPoint")]
+        public string ExitPoint { get; set; }
+
+        [XmlAttribute("StdLocationTypeTypeId")]
+        [JsonProperty("StdLocationTypeTypeId")]
+        public string StdLocationTypeTypeId { get; set; }
+
+        [XmlAttribute("ShortLocationName")]
+        [JsonProperty("ShortLocationName")]
+        public string ShortLocationName { get; set; }
+    }
+
+    // Vehicle Type Records
+    public class VehicleTypeRecords
+    {
+        [XmlAttribute("PageSize")]
+        [JsonProperty("PageSize")]
+        public int PageSize { get; set; }
+
+        [XmlAttribute("PageCount")]
+        [JsonProperty("PageCount")]
+        public int PageCount { get; set; }
+
+        [XmlAttribute("PageNumber")]
+        [JsonProperty("PageNumber")]
+        public int PageNumber { get; set; }
+
+        [XmlAttribute("TotalRecordsFetched")]
+        [JsonProperty("TotalRecordsFetched")]
+        public int TotalRecordsFetched { get; set; }
+
+        [XmlElement("VehicleType")]
+        [JsonProperty("VehicleType")]
+        public List<VehicleType> VehicleType { get; set; }
+    }
+
+    public class VehicleType
+    {
+        [XmlAttribute("OwnerOrgId")]
+        [JsonProperty("OwnerOrgId")]
+        public string OwnerOrgId { get; set; }
+
+        [XmlAttribute("TypeId")]
+        [JsonProperty("TypeId")]
+        public string TypeId { get; set; }
+
+        [XmlAttribute("CreatedBy")]
+        [JsonProperty("CreatedBy")]
+        public string CreatedBy { get; set; }
+
+        [XmlAttribute("Description")]
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [XmlAttribute("OwnerLocId")]
+        [JsonProperty("OwnerLocId")]
+        public string OwnerLocId { get; set; }
+
+        [XmlAttribute("LocalDescription")]
+        [JsonProperty("LocalDescription")]
+        public string LocalDescription { get; set; }
+
+        [XmlAttribute("Code")]
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [XmlAttribute("selected")]
+        [JsonProperty("selected")]
+        public string Selected { get; set; }
+
+        [XmlAttribute("Name")]
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("TypeTypeId")]
+        [JsonProperty("TypeTypeId")]
+        public string TypeTypeId { get; set; }
+
+        [XmlAttribute("StateId")]
+        [JsonProperty("StateId")]
+        public string StateId { get; set; }
+
+        [XmlAttribute("OpenTime")]
+        [JsonProperty("OpenTime")]
+        public DateTime OpenTime { get; set; }
+
+        [XmlAttribute("ParentId")]
+        [JsonProperty("ParentId")]
+        public string ParentId { get; set; }
+
+        [XmlAttribute("DataProfileClassId")]
+        [JsonProperty("DataProfileClassId")]
+        public string DataProfileClassId { get; set; }
+    }
+
+    // Passenger Doc Type Records
+    public class PassengerDocTypeRecords
+    {
+        [XmlAttribute("PageSize")]
+        [JsonProperty("PageSize")]
+        public int PageSize { get; set; }
+
+        [XmlAttribute("PageCount")]
+        [JsonProperty("PageCount")]
+        public int PageCount { get; set; }
+
+        [XmlAttribute("PageNumber")]
+        [JsonProperty("PageNumber")]
+        public int PageNumber { get; set; }
+
+        [XmlAttribute("TotalRecordsFetched")]
+        [JsonProperty("TotalRecordsFetched")]
+        public int TotalRecordsFetched { get; set; }
+
+        [XmlElement("PassengerDocType")]
+        [JsonProperty("PassengerDocType")]
+        public List<PassengerDocType> PassengerDocType { get; set; }
+    }
+
+    public class PassengerDocType
+    {
+        [XmlAttribute("CreatedBy")]
+        [JsonProperty("CreatedBy")]
+        public string CreatedBy { get; set; }
+
+        [XmlAttribute("TypeId")]
+        [JsonProperty("TypeId")]
+        public string TypeId { get; set; }
+
+        [XmlAttribute("OwnerOrgId")]
+        [JsonProperty("OwnerOrgId")]
+        public string OwnerOrgId { get; set; }
+
+        [XmlAttribute("LocalDescription")]
+        [JsonProperty("LocalDescription")]
+        public string LocalDescription { get; set; }
+
+        [XmlAttribute("Name")]
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("Description")]
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [XmlAttribute("TypeTypeId")]
+        [JsonProperty("TypeTypeId")]
+        public string TypeTypeId { get; set; }
+
+        [XmlAttribute("StateId")]
+        [JsonProperty("StateId")]
+        public string StateId { get; set; }
+
+        [XmlAttribute("OpenTime")]
+        [JsonProperty("OpenTime")]
+        public DateTime OpenTime { get; set; }
+
+        [XmlAttribute("ParentId")]
+        [JsonProperty("ParentId")]
+        public string ParentId { get; set; }
+
+        [XmlAttribute("OwnerLocId")]
+        [JsonProperty("OwnerLocId")]
+        public string OwnerLocId { get; set; }
+
+        [XmlAttribute("Code")]
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [XmlAttribute("DataProfileClassId")]
+        [JsonProperty("DataProfileClassId")]
+        public string DataProfileClassId { get; set; }
+    }
+
+    // Passenger Doc Type A Records
+    public class PassengerDocTypeARecords
+    {
+        [XmlAttribute("PageSize")]
+        [JsonProperty("PageSize")]
+        public int PageSize { get; set; }
+
+        [XmlAttribute("PageCount")]
+        [JsonProperty("PageCount")]
+        public int PageCount { get; set; }
+
+        [XmlAttribute("PageNumber")]
+        [JsonProperty("PageNumber")]
+        public int PageNumber { get; set; }
+
+        [XmlAttribute("TotalRecordsFetched")]
+        [JsonProperty("TotalRecordsFetched")]
+        public int TotalRecordsFetched { get; set; }
+
+        [XmlElement("PassengerDocTypeA")]
+        [JsonProperty("PassengerDocTypeA")]
+        public List<PassengerDocTypeA> PassengerDocTypeA { get; set; }
+    }
+
+    public class PassengerDocTypeA
+    {
+        [XmlAttribute("TypeId")]
+        [JsonProperty("TypeId")]
+        public string TypeId { get; set; }
+
+        [XmlAttribute("Name")]
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("Description")]
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [XmlAttribute("StateId")]
+        [JsonProperty("StateId")]
+        public string StateId { get; set; }
+
+        [XmlAttribute("OwnerOrgId")]
+        [JsonProperty("OwnerOrgId")]
+        public string OwnerOrgId { get; set; }
+
+        [XmlAttribute("CreatedBy")]
+        [JsonProperty("CreatedBy")]
+        public string CreatedBy { get; set; }
+
+        [XmlAttribute("selected")]
+        [JsonProperty("selected")]
+        public string Selected { get; set; }
+
+        [XmlAttribute("OpenTime")]
+        [JsonProperty("OpenTime")]
+        public DateTime OpenTime { get; set; }
+
+        [XmlAttribute("OwnerLocId")]
+        [JsonProperty("OwnerLocId")]
+        public string OwnerLocId { get; set; }
+    }
+
+    // Domain data classes
+    [XmlRoot("select")]
+    public class Select
+    {
+        [XmlAttribute("id")]
+        [JsonProperty("id")]
+        public string Id { get; set; }
+
+        [XmlElement("option")]
+        [JsonProperty("option")]
+        public List<PaymentType> Option { get; set; }
+    }
+
+    public class PaymentType
+    {
+        [XmlAttribute("RowNumber")]
+        [JsonProperty("RowNumber")]
+        public int RowNumber { get; set; }
+
+        [XmlAttribute("TypeId")]
+        [JsonProperty("TypeId")]
+        public string TypeId { get; set; }
+
+        [XmlAttribute("Description")]
+        [JsonProperty("Description")]
+        public string Description { get; set; }
+
+        [XmlAttribute("ParentId")]
+        [JsonProperty("ParentId")]
+        public string ParentId { get; set; }
+
+        [XmlAttribute("CreatedBy")]
+        [JsonProperty("CreatedBy")]
+        public string CreatedBy { get; set; }
+
+        [XmlAttribute("StateId")]
+        [JsonProperty("StateId")]
+        public string StateId { get; set; }
+
+        [XmlAttribute("LocalDescription")]
+        [JsonProperty("LocalDescription")]
+        public string LocalDescription { get; set; }
+
+        [XmlAttribute("OwnerLocId")]
+        [JsonProperty("OwnerLocId")]
+        public string OwnerLocId { get; set; }
+
+        [XmlAttribute("OwnerOrgId")]
+        [JsonProperty("OwnerOrgId")]
+        public string OwnerOrgId { get; set; }
+
+        [XmlAttribute("Name")]
+        [JsonProperty("Name")]
+        public string Name { get; set; }
+
+        [XmlAttribute("selected")]
+        [JsonProperty("selected")]
+        public string Selected { get; set; }
+
+        [XmlAttribute("Code")]
+        [JsonProperty("Code")]
+        public string Code { get; set; }
+
+        [XmlAttribute("DataProfileClassId")]
+        [JsonProperty("DataProfileClassId")]
+        public string DataProfileClassId { get; set; }
+
+        [XmlAttribute("TypeTypeId")]
+        [JsonProperty("TypeTypeId")]
+        public string TypeTypeId { get; set; }
+
+        [XmlAttribute("OpenTime")]
+        [JsonProperty("OpenTime")]
+        public DateTime OpenTime { get; set; }
+
+        [XmlAttribute("PaymentTypes_Id")]
+        [JsonProperty("PaymentTypes_Id")]
+        public string PaymentTypes_Id { get; set; }
+    }
+}
