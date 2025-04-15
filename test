@@ -1,518 +1,96 @@
+todo for the demo:
+1- remove forget password link and anything related to the eServices
+2- make sure the translations are correct and only related to the poc only not eServices
+3- check menu levels *
+4- searching in menu should work on main and sub menus
+5- Language switching *
+6- view add edit screens *
+7- add sorting 
+8- add filter icon on the search buttons 
+9- handle session (cookie) expiration
+10- check the security req. for eServices and implement them
+11- check the load testing env. (who can work and what can we use)
+12- manage session from Cache not singlton
+13- VERY IMPPORTANT => give estimation for page development (get/post) and its behaviours (design/implementation/validations/business logic like enable/disable/etc.) - break down the sub tasks and give them estimate time for each sub task to help give estimation on the who project development => prepare estimation sheet for the tasks (check the techniques on the internet (best, worst, average)  and who is the resource who is the not on the project (mid-level developer)
+understand the page business => start the development => (prepare a plan break down the job for the page development from a to z) include all activities to complete the page including (how the page is working, and what are the required behavours, and what the sd needs to work correctly with each behavour and to initiate any required data by the sd, the actual development and validations on both sides and the unit testing (prepare test cases) 
+14-  how the angular is loaded and working on  the client (local, server, lazy loading)
+15- prepare a solid ground for the development to be followed by developers (quality)
+16- prepare unit testing code
+ 
+1- site setup 14 april
+2- demo 16 of april
+3- review security issues and prepare it for security testing 21 april
+4- Mohan and regeni will join on the next Monday => understand the pages behaviour of the VA and plan to implement them in Angular
 
-<DIV id=MainMenuItemContainer_vertical class=MainMenuItemContainer_vertical style="HEIGHT: 530px" jQuery17209335977800166183="65"><DIV id=mainMenuItemWrapperVertical_Home class=mainMenuItemWrapper_vertical jQuery17209335977800166183="11">
-<DIV id=mainMenuItemVertical_Home class="mainMenuItem_vertical mainMenuItemActive_vertical"><A onclick="SiteMenu_onclick('Home', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Home</A></DIV>
-<DIV id=subMenuWrapperVertical_Home class=subMenuWrapper_vertical style="HEIGHT: 65px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_Home class=subMenuItemContainer_vertical style="HEIGHT: 65px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Home', 'InBox')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inbox</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Home', 'LatestUpdates')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Latest Update</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_Manifest class=mainMenuItemWrapper_vertical jQuery17209335977800166183="12">
-<DIV id=mainMenuItemVertical_Manifest class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Cargo</A></DIV>
-<DIV id=subMenuWrapperVertical_Manifest class=subMenuWrapper_vertical style="HEIGHT: 273px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_Manifest class=subMenuItemContainer_vertical style="HEIGHT: 233px">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'Journey')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Manifest</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'CCRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Courier Consolidation Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'ListSuppManifests')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Supplementary Manifests</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'Bills')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bills Of Lading</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'BillAmendment')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bills of Lading For Amendment</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'PendingHB')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Pending HouseBill List</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'Delivery Orders')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Delivery Orders</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'PassengerDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Passenger Receipts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'InboundSheetAWB')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inbound Sheet(Bills Of Lading)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'ListClosePassengerDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Close PR</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'ListExportManifests')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Export Manifest</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'ManifestReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'ListIQManifest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Iraq Manifest</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'CargoPreferences')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Cargo Preferences</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'PostalPackage')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Postal Package</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'MissingLuggages')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Missing Luggages</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'NOC')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">NOC</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'SSC')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Short Shipment Certificate</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'ListDDInternalBills')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Internal bills - Auditors</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'BlacklistedConsignees')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Black Listed Consignee</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'RegisterVehicles')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Register Vehicle</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'TRMissingLuggages')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Missing Luggage</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'SecurityPackages')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Security Packages</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Manifest', 'HBSeizeVehiclesByInterpol')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Seized vehicle – Interpol response</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_ContainrTracking class=mainMenuItemWrapper_vertical jQuery17209335977800166183="13">
-<DIV id=mainMenuItemVertical_ContainrTracking class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('ContainrTracking', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Container Tracking</A></DIV>
-<DIV id=subMenuWrapperVertical_ContainrTracking class=subMenuWrapper_vertical style="HEIGHT: 35px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_ContainrTracking class=subMenuItemContainer_vertical style="HEIGHT: 35px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ContainrTracking', 'ContainrTrackingSm')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Container Tracking</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_ExportManifest class=mainMenuItemWrapper_vertical jQuery17209335977800166183="14">
-<DIV id=mainMenuItemVertical_ExportManifest class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Export Manifest', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Export Cargo</A></DIV>
-<DIV id=subMenuWrapperVertical_ExportManifest class=subMenuWrapper_vertical style="HEIGHT: 155px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_ExportManifest class=subMenuItemContainer_vertical style="HEIGHT: 155px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Export Manifest', 'ExportManifest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Export Manifest</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Export Manifest', 'ExportHouseBills')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Export HouseBill</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Export Manifest', 'Export Orders')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Export Orders</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Export Manifest', 'ExpHouseBillsForExpInboundSheet')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inbound Sheet(Bills Of Lading)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Export Manifest', 'ExportManifestReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_SelfpaymentServices class=mainMenuItemWrapper_vertical jQuery17209335977800166183="15">
-<DIV id=mainMenuItemVertical_SelfpaymentServices class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('SelfpaymentServices', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Self Payment Services</A></DIV>
-<DIV id=subMenuWrapperVertical_SelfpaymentServices class=subMenuWrapper_vertical style="HEIGHT: 35px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_SelfpaymentServices class=subMenuItemContainer_vertical style="HEIGHT: 35px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('SelfpaymentServices', 'Receipt')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Self Payment Services</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_Declaration class=mainMenuItemWrapper_vertical jQuery17209335977800166183="16">
-<DIV id=mainMenuItemVertical_Declaration class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration</A></DIV>
-<DIV id=subMenuWrapperVertical_Declaration class=subMenuWrapper_vertical style="HEIGHT: 273px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_Declaration class=subMenuItemContainer_vertical style="HEIGHT: 233px">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'DeliveryOrders')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Pending D.O</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'Declaration')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'Exit')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exit Gate</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'ExitPass')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exit Pass</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'Invoices')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Pending Invoices</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'Payment')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Payments</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'ClearingAgent Delegation')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Clearing Agent Delegation</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'GblAdvSrch')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Advanced Search</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'MechanicalCertificate')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Mechanical Certificate</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'MechanicalCertificateReExp')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Re-Export Mechanical Certificate</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'ListReExportRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Re-Export Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'DeclarationPreferences')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration Preferences</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'DeclarationForMaqasa')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Maqasa</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'MaqasaReport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Maqasa Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'DeclarationsOGD')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'MOCIInfo')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">View Licenses Information</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'MCOfficers')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Officers</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'ScanDocumentRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Scan Document Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'PromissoryNote')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Promissory Note</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'DepositTracking')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration Deposit Tracking</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'ImpPayRequests')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Importer Payment Requests</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'AdditionalDocumentsRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Additional Document Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Declaration', 'UTFRequestSubMenu')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Undertaking Form Request</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_Inspection class=mainMenuItemWrapper_vertical jQuery17209335977800166183="17">
-<DIV id=mainMenuItemVertical_Inspection class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspection</A></DIV>
-<DIV id=subMenuWrapperVertical_Inspection class=subMenuWrapper_vertical style="HEIGHT: 309px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_Inspection class=subMenuItemContainer_vertical style="HEIGHT: 269px">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'Request')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspection Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'InsForAppoint')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspection Round Report</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'InsForIDD')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspections (IDD)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'exportinsp')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspections (Export)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'VesselInspection')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vessel Inspection</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'DohaVesselInspection')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Doha Vessel Inspection</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'Precaution')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Precaution</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'InspTransfer')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Transfer From Port To Port</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'VR')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Verification Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'InspectionPreferences')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspection Preferences</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'DestroyRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Destroy Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'DestroyFinding')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Destroy Finding</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'conflist')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Confiscation List</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'PPTransfer')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Postal Package Transfer</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'SeenOnExitImport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Seen On Exit – Import</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'SubMenuIDDDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Direct Delivery Form Details</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'Goodsdetection')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Goods Detection Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'ReleaseToBonded')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Release to Bonded</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'CMRequestImport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Container Delivery/Receive Request Import Full</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'CMRequestExport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Container Delivery/Receive Request Export Full</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'CMRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Container Delivery/Receive Request Empty Movement</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Inspection', 'GeneralInquiryService')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">General Inquiry Service Details</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_BankGuarantee class=mainMenuItemWrapper_vertical jQuery17209335977800166183="18">
-<DIV id=mainMenuItemVertical_BankGuarantee class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('BankGuarantee', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bank Guarantee</A></DIV>
-<DIV id=subMenuWrapperVertical_BankGuarantee class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_BankGuarantee class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BankGuarantee', 'BusinessPartnerBankGuarantee')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Business Activity Bank Guarantee</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BankGuarantee', 'BrokerBGDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Clearance Bank Guarantee</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_ValueDoubtsandValuation class=mainMenuItemWrapper_vertical jQuery17209335977800166183="19">
-<DIV id=mainMenuItemVertical_ValueDoubtsandValuation class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('ValueDoubtsandValuation', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Value Doubts and Valuation</A></DIV>
-<DIV id=subMenuWrapperVertical_ValueDoubtsandValuation class=subMenuWrapper_vertical style="HEIGHT: 173px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_ValueDoubtsandValuation class=subMenuItemContainer_vertical style="HEIGHT: 173px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ValueDoubtsandValuation', 'ValueDoubtRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Value Doubt Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ValueDoubtsandValuation', 'InformationRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Information Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ValueDoubtsandValuation', 'ValuationRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Valuation Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ValueDoubtsandValuation', 'ReleaseInReturnofGuaranteeRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Release in-return of Guarantee Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ValueDoubtsandValuation', 'PriceValReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_RevenueCollection class=mainMenuItemWrapper_vertical jQuery17209335977800166183="20">
-<DIV id=mainMenuItemVertical_RevenueCollection class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Revenue Collection</A></DIV>
-<DIV id=subMenuWrapperVertical_RevenueCollection class=subMenuWrapper_vertical style="HEIGHT: 255px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_RevenueCollection class=subMenuItemContainer_vertical style="HEIGHT: 215px">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'Accounts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customer Accounts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'RevenueAccounts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Revenue Accounts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'CollectionAccounts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Collection Accounts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'Duties')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Duties</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'DutyRevenueAccount')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Duty to RA</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'BankGuarantee')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bank Guarantee</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'CustomsCollectionStatistics')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Collection Receipts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'Reports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'OnlineReceipts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Online Receipt Details</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Revenue Collection', 'PaymentCollection')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Payment Collections</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_GCSAcs class=mainMenuItemWrapper_vertical jQuery17209335977800166183="21">
-<DIV id=mainMenuItemVertical_GCSAcs class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Receipts</A></DIV>
-<DIV id=subMenuWrapperVertical_GCSAcs class=subMenuWrapper_vertical style="HEIGHT: 255px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_GCSAcs class=subMenuItemContainer_vertical style="HEIGHT: 215px">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'GCSAcs')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Accounts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'PriceList')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Price List</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'Receipts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Receipts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'ExcepReceipts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exceptional Cases</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'ListGCSServices')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Services</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'PaymentRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Payment Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'BrokerReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Online Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'GCSServiesReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'GCSReceiptsRefund')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Receipts Refund</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'GCSReceiptsRevenueValidation')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Service Fee Exclusions</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'ConsigneeSpecficRules')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Consignee Specific Rules</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'GCSCheckersMonitoringReport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Checkers Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'KNETMerchantDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">KNET Merchant Details</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSAcs', 'ListKNETMerchantDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Associate KNET Merchant Details</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_GCSElectronicTransfer class=mainMenuItemWrapper_vertical jQuery17209335977800166183="22">
-<DIV id=mainMenuItemVertical_GCSElectronicTransfer class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('GCSElectronicTransfer', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Electronic Transfer</A></DIV>
-<DIV id=subMenuWrapperVertical_GCSElectronicTransfer class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_GCSElectronicTransfer class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSElectronicTransfer', 'ElectronicTransfer')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Electronic Transfer</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSElectronicTransfer', 'ElectronicTransferReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_PassengerSuspects class=mainMenuItemWrapper_vertical jQuery17209335977800166183="23">
-<DIV id=mainMenuItemVertical_PassengerSuspects class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('PassengerSuspects', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Passenger Suspects</A></DIV>
-<DIV id=subMenuWrapperVertical_PassengerSuspects class=subMenuWrapper_vertical style="HEIGHT: 35px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_PassengerSuspects class=subMenuItemContainer_vertical style="HEIGHT: 35px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PassengerSuspects', 'PassengerSuspects')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Passenger Suspects</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_WAREHOUSES class=mainMenuItemWrapper_vertical jQuery17209335977800166183="24">
-<DIV id=mainMenuItemVertical_WAREHOUSES class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('WAREHOUSES', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">FTZ</A></DIV>
-<DIV id=subMenuWrapperVertical_WAREHOUSES class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_WAREHOUSES class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WAREHOUSES', 'ListFTZWareHouses')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">WareHouses</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WAREHOUSES', 'ListFTZWHUnits')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">FTZWHUnits</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WAREHOUSES', 'ListFTZWHLicense')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">WareHouse License</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WAREHOUSES', 'FtzItems')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">main.FtzItems</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WAREHOUSES', 'ListFTZProforma')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">FTZ Proforma</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_QMS class=mainMenuItemWrapper_vertical jQuery17209335977800166183="25">
-<DIV id=mainMenuItemVertical_QMS class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('QMS', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Quota</A></DIV>
-<DIV id=subMenuWrapperVertical_QMS class=subMenuWrapper_vertical style="HEIGHT: 95px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_QMS class=subMenuItemContainer_vertical style="HEIGHT: 95px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('QMS', 'StartQuota')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('QMS', 'Quota')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Quota</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('QMS', 'QuotaReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Quota Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_ExemptionSystem class=mainMenuItemWrapper_vertical jQuery17209335977800166183="26">
-<DIV id=mainMenuItemVertical_ExemptionSystem class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('ExemptionSystem', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exemption System</A></DIV>
-<DIV id=subMenuWrapperVertical_ExemptionSystem class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_ExemptionSystem class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ExemptionSystem', 'ExemptionCertificate')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exemption Certificate</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ExemptionSystem', 'BFDutyInOut')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Duty Sign-In/Sign Out</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ExemptionSystem', 'ExemptionRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">BForm</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ExemptionSystem', 'ExemRpts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_VehicleRegistration class=mainMenuItemWrapper_vertical jQuery17209335977800166183="27">
-<DIV id=mainMenuItemVertical_VehicleRegistration class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Vehicle Registration', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Registration</A></DIV>
-<DIV id=subMenuWrapperVertical_VehicleRegistration class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_VehicleRegistration class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Vehicle Registration', 'ListVehicleRegistrationForms')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Registration</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Vehicle Registration', 'ListVehicleInsurance')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Insurance</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Vehicle Registration', 'ListVehAuthForm')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Authorization/Certificate</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_RiskManagement class=mainMenuItemWrapper_vertical jQuery17209335977800166183="28">
-<DIV id=mainMenuItemVertical_RiskManagement class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Risk Management</A></DIV>
-<DIV id=subMenuWrapperVertical_RiskManagement class=subMenuWrapper_vertical style="HEIGHT: 255px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_RiskManagement class=subMenuItemContainer_vertical style="HEIGHT: 215px">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RMSStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'Targets')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Targets</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'SubAsessment')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Assessment Report Details</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'BIAnalytics')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Business Intelligence Analytics</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RMSOrgProfile')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Organization Profile</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RMSMonitoringReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RiskTypes')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Risk Types</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'Risks')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Risks</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'Actions')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Actions</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RMSGroups')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Manage Groups</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RMSKeyWords')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Manage Keywords</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RiskInpectionLocationParameter')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">RMS Location Parameters</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RiskConfig')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">RMS Configuration</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RMSComplexAnalysisRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">RMS Complex Analysis Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Risk Management', 'RiskIndicator')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">General Risk Indicators</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_TIS class=mainMenuItemWrapper_vertical jQuery17209335977800166183="29">
-<DIV id=mainMenuItemVertical_TIS class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Statistics and Reports</A></DIV>
-<DIV id=subMenuWrapperVertical_TIS class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_TIS class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'ExternalTradeStatistics')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">External Trade Statistics</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'TransactionalReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Transactional Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'LandReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Land Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'DeclarationReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'CSFinanceReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Revenue Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'InspectionStatsReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspection Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'MiscellaneousReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Miscellaneous Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'ConfiscationStatsReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Confiscation Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'StatisticalReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Statistical Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'ManifestStatisticalReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Manifest Statistical Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'PNReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Promissory Note Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('TIS', 'DTReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Deposit Tracking Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_IntegrationOfMOJ class=mainMenuItemWrapper_vertical jQuery17209335977800166183="30">
-<DIV id=mainMenuItemVertical_IntegrationOfMOJ class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('IntegrationOfMOJ', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Integration of MOJ</A></DIV>
-<DIV id=subMenuWrapperVertical_IntegrationOfMOJ class=subMenuWrapper_vertical style="HEIGHT: 35px; POSITION: ">
-<DIV id=subMenuItemContainerVertical_IntegrationOfMOJ class=subMenuItemContainer_vertical style="HEIGHT: 35px; WIDTH: 100%">
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('IntegrationOfMOJ', 'MOJReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">MOJ Fines and Penalties</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_Admin class=mainMenuItemWrapper_vertical jQuery17209335977800166183="31">
-<DIV id=mainMenuItemVertical_Admin class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Admin</A></DIV>
-<DIV id=subMenuWrapperVertical_Admin class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_Admin class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Organizations')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Organizations</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Users')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Users</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Roles')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Roles</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Locations')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Locations</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'ProfileGroups')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Lists</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Measurementunits')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Measurement Units</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Currencies')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Currencies</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'ExchangeRates')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exchange Rates</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Types')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Types</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Documents')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Documents</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Counters')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Counters</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'CCP')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">CCP</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'CustomsYear')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Holidays</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'LatestUpdates')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Latest Update</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'ListCarriers')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Carriers</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'People')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">People</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'BusinessRoles')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Business Roles</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Customs Department')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Department</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Confiscation FindingReason')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Confiscation FindingReason</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'CustomsOrgGroups')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Organization</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Admin', 'Jobtitles')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Job Titles</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_BondedCargo class=mainMenuItemWrapper_vertical jQuery17209335977800166183="32">
-<DIV id=mainMenuItemVertical_BondedCargo class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bonded Warehouse</A></DIV>
-<DIV id=subMenuWrapperVertical_BondedCargo class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_BondedCargo class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'DD')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bounded Inbound</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'DeclareRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declare Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'InboundSheetAWB')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inbound Sheet(Bills Of Lading)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'ShoppingCenters')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Shopping Center Exit Form</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'InternalBillsList')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Internal Bills List</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'BWHReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'BWHBankGuarantee')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bank Guarantee</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BondedCargo', 'BWHBankGuaranteeRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bank Guarantee Request</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_AddOn class=mainMenuItemWrapper_vertical jQuery17209335977800166183="33">
-<DIV id=mainMenuItemVertical_AddOn class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('AddOn', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Add On</A></DIV>
-<DIV id=subMenuWrapperVertical_AddOn class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_AddOn class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('AddOn', 'InfoPath')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">InfoPath</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_BrokerRegistration class=mainMenuItemWrapper_vertical jQuery17209335977800166183="34">
-<DIV id=mainMenuItemVertical_BrokerRegistration class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('BrokerRegistration', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Broker Registration</A></DIV>
-<DIV id=subMenuWrapperVertical_BrokerRegistration class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_BrokerRegistration class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BrokerRegistration', 'BrokerOrganizations')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Brokers</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BrokerRegistration', 'DROrganizations')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">DR Organization</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BrokerRegistration', 'BrokerFines')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Broker Fines</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BrokerRegistration', 'BRReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_CustomsTariff class=mainMenuItemWrapper_vertical jQuery17209335977800166183="35">
-<DIV id=mainMenuItemVertical_CustomsTariff class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Customs Tariff', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Tariff</A></DIV>
-<DIV id=subMenuWrapperVertical_CustomsTariff class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_CustomsTariff class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Customs Tariff', 'Section')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Sections</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Customs Tariff', 'Chapter')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Chapters</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Customs Tariff', 'Heading')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Headings</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Customs Tariff', 'SubHeading')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Sub Headings</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Customs Tariff', 'Item')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Tariff Items</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_AuctionRequest class=mainMenuItemWrapper_vertical jQuery17209335977800166183="36">
-<DIV id=mainMenuItemVertical_AuctionRequest class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('AuctionRequest', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Auction Request</A></DIV>
-<DIV id=subMenuWrapperVertical_AuctionRequest class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_AuctionRequest class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('AuctionRequest', 'AuctionRequestList')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Auction Request</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_warehouse class=mainMenuItemWrapper_vertical jQuery17209335977800166183="37">
-<DIV id=mainMenuItemVertical_warehouse class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('warehouse', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">WareHouses</A></DIV>
-<DIV id=subMenuWrapperVertical_warehouse class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_warehouse class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('warehouse', 'WHRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspection Requests</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_CRF class=mainMenuItemWrapper_vertical jQuery17209335977800166183="38">
-<DIV id=mainMenuItemVertical_CRF class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('CRF', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Currency Report Form Details</A></DIV>
-<DIV id=subMenuWrapperVertical_CRF class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_CRF class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CRF', 'CRF')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">CRF Details (IN)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CRF', 'CRFO')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">CRF Details (OUT)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CRF', 'CRFPassengerDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Passenger Details</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CRF', 'CRDetailsReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Report</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_VRD class=mainMenuItemWrapper_vertical jQuery17209335977800166183="39">
-<DIV id=mainMenuItemVertical_VRD class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">VRM</A></DIV>
-<DIV id=subMenuWrapperVertical_VRD class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_VRD class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VehicleTEL')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">TEL</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'ListDrivers')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Drivers</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'ListVehicleDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Details</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'ListTripTiks')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Trip Tiks</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'MnuVRMBlocking')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">VRM Blocking</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VehiclePassengerInspection')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle and Passenger Inspection</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'SMSM')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Shift Management</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'ListVehicleStatus')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Status</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'ListAttorneyTransactions')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Attorney Transactions</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VRSTypes')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Registration Types</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VRSReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VRSCarTypes')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Car Types</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VRSCity')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">City</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VehicleShapeGroups')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Shape Groups</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'ColorType')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Vehicle Colors</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'VRSPreferences')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Preferences</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('VRD', 'FileCommunicationDetails')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Message Communication Details</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_PriceManagement class=mainMenuItemWrapper_vertical jQuery17209335977800166183="40">
-<DIV id=mainMenuItemVertical_PriceManagement class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('PriceManagement', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Price Valuation</A></DIV>
-<DIV id=subMenuWrapperVertical_PriceManagement class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_PriceManagement class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PriceManagement', 'PriceManStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PriceManagement', 'PriceValuation')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Price Management</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PriceManagement', 'PriceValReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_mnuOVT class=mainMenuItemWrapper_vertical jQuery17209335977800166183="41">
-<DIV id=mainMenuItemVertical_mnuOVT class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('mnuOVT', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Outgoing Vehicle Transaction</A></DIV>
-<DIV id=subMenuWrapperVertical_mnuOVT class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_mnuOVT class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('mnuOVT', 'StartOVT')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_RILO class=mainMenuItemWrapper_vertical jQuery17209335977800166183="42">
-<DIV id=mainMenuItemVertical_RILO class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('RILO', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">RILO</A></DIV>
-<DIV id=subMenuWrapperVertical_RILO class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_RILO class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('RILO', 'Start1')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('RILO', 'RILOConfiscation')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">RILO Confiscation</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_MaqasaClaims class=mainMenuItemWrapper_vertical jQuery17209335977800166183="43">
-<DIV id=mainMenuItemVertical_MaqasaClaims class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('MaqasaClaims', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Maqasa Claims</A></DIV>
-<DIV id=subMenuWrapperVertical_MaqasaClaims class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_MaqasaClaims class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('MaqasaClaims', 'Starts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('MaqasaClaims', 'Claiming')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Claiming</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('MaqasaClaims', 'Claimed')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Claimed</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('MaqasaClaims', 'MaqasaReport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Maqasa Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('MaqasaClaims', 'Preferences')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Preferences</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_GCSInvoices class=mainMenuItemWrapper_vertical jQuery17209335977800166183="44">
-<DIV id=mainMenuItemVertical_GCSInvoices class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('GCSInvoices', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Invoices</A></DIV>
-<DIV id=subMenuWrapperVertical_GCSInvoices class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_GCSInvoices class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSInvoices', 'Start1')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSInvoices', 'GCSInvoices')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Invoices</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('GCSInvoices', 'GCSInvoiceReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">GCS Invoice Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_PassengerManifest class=mainMenuItemWrapper_vertical jQuery17209335977800166183="45">
-<DIV id=mainMenuItemVertical_PassengerManifest class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('PassengerManifest', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Small Ships Manifest</A></DIV>
-<DIV id=subMenuWrapperVertical_PassengerManifest class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_PassengerManifest class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PassengerManifest', 'DohaManifest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Small Ships Manifest</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PassengerManifest', 'Ship')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Ships</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PassengerManifest', 'DohaShifts')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Shifts</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('PassengerManifest', 'DohaWarehouse')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Warehouses</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_mnuIVT class=mainMenuItemWrapper_vertical jQuery17209335977800166183="46">
-<DIV id=mainMenuItemVertical_mnuIVT class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('mnuIVT', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Incoming Vehicle Transaction</A></DIV>
-<DIV id=subMenuWrapperVertical_mnuIVT class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_mnuIVT class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('mnuIVT', 'StartIVT')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_WtScaleReceipt class=mainMenuItemWrapper_vertical jQuery17209335977800166183="47">
-<DIV id=mainMenuItemVertical_WtScaleReceipt class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('WtScaleReceipt', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Weight Scale Receipt</A></DIV>
-<DIV id=subMenuWrapperVertical_WtScaleReceipt class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_WtScaleReceipt class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WtScaleReceipt', 'WtScaleReceipt')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Weight Scale Receipt</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WtScaleReceipt', 'WtScaleTrucks')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Empty Trucks List - Sea</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WtScaleReceipt', 'WtScaleReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_DirectDutyTransfer class=mainMenuItemWrapper_vertical jQuery17209335977800166183="48">
-<DIV id=mainMenuItemVertical_DirectDutyTransfer class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Direct Duty TransFer</A></DIV>
-<DIV id=subMenuWrapperVertical_DirectDutyTransfer class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_DirectDutyTransfer class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'ByKuwaitStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'PaymentBatch')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Payment By Kuwait</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'ToKuwaitPaymentBatch')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Payments To Kuwait</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'DuesForKuwait')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Dues For Kuwait</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'DuesOnKuwait')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Dues On Kuwait</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'DuesRejectionAmendment')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reject/Close Dues</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'DDTReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DirectDutyTransfer', 'ReportRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Report Request</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_Blocking class=mainMenuItemWrapper_vertical jQuery17209335977800166183="49">
-<DIV id=mainMenuItemVertical_Blocking class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Blocking', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Blocking</A></DIV>
-<DIV id=subMenuWrapperVertical_Blocking class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_Blocking class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Blocking', 'SubBlocking')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Blocking</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Blocking', 'ListNotifyBlockingUsers')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Notify Blocking Configurations</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Blocking', 'BlockingReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Blocking Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_DigitalDocuments class=mainMenuItemWrapper_vertical jQuery17209335977800166183="50">
-<DIV id=mainMenuItemVertical_DigitalDocuments class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration File Management</A></DIV>
-<DIV id=subMenuWrapperVertical_DigitalDocuments class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_DigitalDocuments class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'DigitalDocumentsStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'DeclarationGroups')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration Groups</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'RejectDeclGrpItems')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration Group Items</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'DizlDeclDocsOriginal')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Draw Original Declarations</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'DizlDeclDocsReplica')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration File Management Request Replica</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'DocumentSubmissionRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Receive original declaration file</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'mnuDigitalDocumentReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Declaration File Management Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('DigitalDocuments', 'Users')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Users</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_StatModuleid class=mainMenuItemWrapper_vertical jQuery17209335977800166183="51">
-<DIV id=mainMenuItemVertical_StatModuleid class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('StatModuleid', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Statistical Module</A></DIV>
-<DIV id=subMenuWrapperVertical_StatModuleid class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_StatModuleid class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('StatModuleid', 'SubMenuItem1')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_MCIntegration class=mainMenuItemWrapper_vertical jQuery17209335977800166183="52">
-<DIV id=mainMenuItemVertical_MCIntegration class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('MCIntegration', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Interface Oracle Financials</A></DIV>
-<DIV id=subMenuWrapperVertical_MCIntegration class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_MCIntegration class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('MCIntegration', 'Batches')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Batches</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_CustomsWarehouse class=mainMenuItemWrapper_vertical jQuery17209335977800166183="53">
-<DIV id=mainMenuItemVertical_CustomsWarehouse class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('CustomsWarehouse', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Warehouse</A></DIV>
-<DIV id=subMenuWrapperVertical_CustomsWarehouse class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_CustomsWarehouse class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CustomsWarehouse', 'CustomsWarehouseStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CustomsWarehouse', 'CustomsWarehouseInProcess')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Storage Order</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CustomsWarehouse', 'CustomsWarehouseOutProcess')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exit Order</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CustomsWarehouse', 'CWHUnloadingRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Unload Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('CustomsWarehouse', 'CustomsWarehouseReport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Warehouse Report</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_SupportServices class=mainMenuItemWrapper_vertical jQuery17209335977800166183="54">
-<DIV id=mainMenuItemVertical_SupportServices class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('SupportServices', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Support Services</A></DIV>
-<DIV id=subMenuWrapperVertical_SupportServices class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_SupportServices class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('SupportServices', 'DBSupport')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Support</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_SettlementForm class=mainMenuItemWrapper_vertical jQuery17209335977800166183="55">
-<DIV id=mainMenuItemVertical_SettlementForm class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('SettlementForm', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Settlement Form</A></DIV>
-<DIV id=subMenuWrapperVertical_SettlementForm class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_SettlementForm class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('SettlementForm', 'WorkLoadStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('SettlementForm', 'SettlementForm')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Settlement Form</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('SettlementForm', 'SFReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_XRay class=mainMenuItemWrapper_vertical jQuery17209335977800166183="56">
-<DIV id=mainMenuItemVertical_XRay class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('XRay', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">X-Ray</A></DIV>
-<DIV id=subMenuWrapperVertical_XRay class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_XRay class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('XRay', 'ScannedImages')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Scanned Images</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_LaboratoryTesting class=mainMenuItemWrapper_vertical jQuery17209335977800166183="57">
-<DIV id=mainMenuItemVertical_LaboratoryTesting class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('LaboratoryTesting', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Laboratory Testing</A></DIV>
-<DIV id=subMenuWrapperVertical_LaboratoryTesting class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_LaboratoryTesting class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('LaboratoryTesting', 'LabTestingStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('LaboratoryTesting', 'LabTestRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Lab Test Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('LaboratoryTesting', 'LabTestResults')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Lab Test Results</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('LaboratoryTesting', 'SampleRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Sample Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('LaboratoryTesting', 'Privileges')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Privileges</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_EServiceRequests class=mainMenuItemWrapper_vertical jQuery17209335977800166183="58">
-<DIV id=mainMenuItemVertical_EServiceRequests class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs E-Services</A></DIV>
-<DIV id=subMenuWrapperVertical_EServiceRequests class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_EServiceRequests class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'EServiceRequestsStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'EServiceRequests')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">E-Service Requests</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'BrokerExamResult')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Broker Exam Results</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'ExamNotification')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Exam Notification</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'RegRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Organization Registration</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'OrganizationReviewerReadOnlyReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'ERAccountRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">eServices Account Deactivate / Update Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'BusinessActivityRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs Business Activity eService Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'UserActivityRequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Customs System User eService Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('EServiceRequests', 'BankGuaranteeeServiceRequests')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bank Guarantee eService Requests</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_RevenueSettlementForm class=mainMenuItemWrapper_vertical jQuery17209335977800166183="59">
-<DIV id=mainMenuItemVertical_RevenueSettlementForm class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('RevenueSettlementForm', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Revenue Settlement Form</A></DIV>
-<DIV id=subMenuWrapperVertical_RevenueSettlementForm class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_RevenueSettlementForm class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('RevenueSettlementForm', 'RevenueSettlementForm')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Revenue Settlement Form</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('RevenueSettlementForm', 'RSFReports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Reports</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_MnuMOICriminalEvidence class=mainMenuItemWrapper_vertical jQuery17209335977800166183="60">
-<DIV id=mainMenuItemVertical_MnuMOICriminalEvidence class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('MnuMOICriminalEvidence', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">MOI Criminal Evidence</A></DIV>
-<DIV id=subMenuWrapperVertical_MnuMOICriminalEvidence class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_MnuMOICriminalEvidence class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('MnuMOICriminalEvidence', 'MnuGoodBehaviorCertificateService')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Good Behavior Certificate Service</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_BaitAlMal class=mainMenuItemWrapper_vertical jQuery17209335977800166183="61">
-<DIV id=mainMenuItemVertical_BaitAlMal class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('BaitAlMal', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Bait Al Mal</A></DIV>
-<DIV id=subMenuWrapperVertical_BaitAlMal class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_BaitAlMal class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BaitAlMal', 'TransferBaitAlMal')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Transfer to Bait Al Mal Requests</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BaitAlMal', 'InsTR')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Inspection and Transfer Request</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('BaitAlMal', 'Storagerequest')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Storage Requests</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_Destroy class=mainMenuItemWrapper_vertical jQuery17209335977800166183="62">
-<DIV id=mainMenuItemVertical_Destroy class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('Destroy', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Destroy</A></DIV>
-<DIV id=subMenuWrapperVertical_Destroy class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_Destroy class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('Destroy', 'TRDestroyRequests')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Destroy Request</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_ApprovalsOGA class=mainMenuItemWrapper_vertical jQuery17209335977800166183="63">
-<DIV id=mainMenuItemVertical_ApprovalsOGA class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('ApprovalsOGA', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">OGA Approvals</A></DIV>
-<DIV id=subMenuWrapperVertical_ApprovalsOGA class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_ApprovalsOGA class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('ApprovalsOGA', 'TRStorageRequestOGDApp')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">OGA approvals for Bait Al Mal Storage Request</A></DIV></DIV></DIV></DIV>
-<DIV id=mainMenuItemWrapperVertical_WorkLoadDistribution class=mainMenuItemWrapper_vertical jQuery17209335977800166183="64">
-<DIV id=mainMenuItemVertical_WorkLoadDistribution class=mainMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', '')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Work Load Distribution</A></DIV>
-<DIV id=subMenuWrapperVertical_WorkLoadDistribution class=subMenuWrapper_vertical>
-<DIV id=subMenuItemContainerVertical_WorkLoadDistribution class=subMenuItemContainer_vertical>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'WorkLoadStart')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Start</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'Groups')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Groups</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'ManageOfficersDuty')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Manage Officers Duty</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'DutyInOut')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Duty Sign-In/Sign Out</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'DistributeDeclaration')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Distribute Declaration</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'TransactionMonitoring')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Transaction Monitoring (Completed/In Queue)</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'PerformanceAnalysis')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">Officer Performance &amp; Transaction Re-Distribute</A></DIV>
-<DIV class=subMenuItem_vertical><A onclick="SiteMenu_onclick('WorkLoadDistribution', 'Reports')" href="http://10.175.205.158/MCKWFX5Jul/Main.aspx#">WorkLoad Reports</A></DIV></DIV></DIV></DIV></DIV>
+
+
+- frontend library to generate the angular pages basedon xml pubpages (keep the captions, methods, strcutre, attributes, params, clicks, ordering, etc.)
+- try to reuse all current avialable resoruces like transalations, methods => to focus on other tasks
+- check how can we execute the javascript code directly in the angular*
+- prepare the initial work to be ready for the automation process (likethe translations and the captions, etc)
+- show that you are ready and thinking of the automation part
+
+what has been auto generated 
+what can be auto generated
+
+to note that there are other parts that need work but can be done on the upgrade process as it was not need during the poc but has been covered and studied (we have other parts that not covered in the poc but will be covered in the development
+
+** logout implemenation  ** 
+** take the dictionary from Gopi from the prod for the menu and the labels **
+
+---------------------------------------------------------------
+TODO in the code (enhancements):
+1- add the page id using the serliazer to be read in the service doc service auto
+2- move the pagination and the sorting to be in a shared service and send to the service doc service (CreatePageServiceDocument) to be added auto and all other data that prepared manually
+3- merge the pagination and the sort in one method (two param) and check them to do the required action and generate the required output
+4- split the dtos of the pagination and the sorting in the quiries in 2 objects
+5- to check with mc team in case of submit any form, should we get the domain data to do backend validation or they handle this from their side
+6- update the parser to return camel case for the angular only
+7- make the create data node to use reflection to create the object node from the c# class and from the attributes
+--------------------------------------------------------------------------
+
+
+Ahmed Tasks:
+1- study a way to generate Angular pages (html, ts,cs) from xml and javascript
+2- staudy a way to execute JS in the Angualr directly
+3- study a way to generate the front-end page behaviour and validations 
+4- study a way to use the MC resoruces using the caption ids
+
+
+Outputs:
+1- doable
+2- accurany %
+3- needed modifications (automation %, manual work %)
+
+
+********************************************************************************
+
+How to work
+1- understand the page business
+2- implement the page design in html and angular => possibilty of partail automation 
+3- implement the front-end page behaviour => manual work + automation
+4- convert the XML to JSON c# object using the API (receive the xml and return the c# object) => can use service doc xml or PubPAge XML (preferred)
+5- check if there are any data retrived in the html file not are in the sd to be added to the extra data (htmlNodes) to be fetched from the html on the post call => Manual process
+6- agree on the DTO between the angular and the API => automated
+7- implement the api and the command/query
+8- add any server-side validations on the command and the query => automation
+9- define the page id and the page action id that should be called => automated
+10- impelement the handler using the predefined and shared services to prepare the service document
+11- add any custom changes on the service document (like search section, sorting, pagination) => all can be moved to be shared as well but need to be called => can be automated.
+12- test the api => if worked, then Ok, else:
+13- compare the generated XML by the layer with the original XML from the MC APP and find the differences (ignore the nodes and attributes orders as they are not matters)=> Use API like Claude 
+14- Apply the differences on the api handler
+15- test the changes
+
+
+Notes:
+1- some handlers response can be complex object of the service document and other extra data if ther eare data retrieved in the html and are not the service document
+2- some data in the post should not be filled from the front-end even that it is in the xml, and it should be filled from the api hub for security reasons like form date. => manual work to be considered
+
+***************************************************************
+
+Document strcuture:
+1- Work Baseline Steps (how to work, quality of work, estimations, number of resrouces)
+2- Define the work quality points
+3- Estimations
+4- What can be done auto and what should be done manually 
