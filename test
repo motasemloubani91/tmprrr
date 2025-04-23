@@ -1,96 +1,590 @@
-todo for the demo:
-1- remove forget password link and anything related to the eServices
-2- make sure the translations are correct and only related to the poc only not eServices
-3- check menu levels *
-4- searching in menu should work on main and sub menus
-5- Language switching *
-6- view add edit screens *
-7- add sorting 
-8- add filter icon on the search buttons 
-9- handle session (cookie) expiration
-10- check the security req. for eServices and implement them
-11- check the load testing env. (who can work and what can we use)
-12- manage session from Cache not singlton
-13- VERY IMPPORTANT => give estimation for page development (get/post) and its behaviours (design/implementation/validations/business logic like enable/disable/etc.) - break down the sub tasks and give them estimate time for each sub task to help give estimation on the who project development => prepare estimation sheet for the tasks (check the techniques on the internet (best, worst, average)  and who is the resource who is the not on the project (mid-level developer)
-understand the page business => start the development => (prepare a plan break down the job for the page development from a to z) include all activities to complete the page including (how the page is working, and what are the required behavours, and what the sd needs to work correctly with each behavour and to initiate any required data by the sd, the actual development and validations on both sides and the unit testing (prepare test cases) 
-14-  how the angular is loaded and working on  the client (local, server, lazy loading)
-15- prepare a solid ground for the development to be followed by developers (quality)
-16- prepare unit testing code
- 
-1- site setup 14 april
-2- demo 16 of april
-3- review security issues and prepare it for security testing 21 april
-4- Mohan and regeni will join on the next Monday => understand the pages behaviour of the VA and plan to implement them in Angular
+<?xml version="1.0" encoding="utf-8"?>
+<Form DefaultLang="eng" FormExceptionId="formexception" id="VehAuthFormsFr" ProvideLang="" RequiredMark="*" width="100%" OnBeforeSubmit="" formenctype="application/x-www-form-urlencoded" CaptionId="" Available="">
+  <Hiddens>
+    <MSESControl Attribute="AuthorizationType" class="textbox" id="AuthType" name="AuthType" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="hidden" />
+    <MSESControl Attribute="VehAuthFormId" class="textbox" id="hidVehAuthFormId" name="hidVehAuthFormId" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="hidden" />
+  </Hiddens>
+  <ControlSet type="formheader">
+    <HorizontalArray>
+      <Cell align="">
+        <MSESControl CaptionId="VR.VehAuthForms" class="" type="label" width="" />
+      </Cell>
+    </HorizontalArray>
+  </ControlSet>
+  <ControlSet border="0" type="formbody">
+    <HorizontalArray>
+      <Cell class="view-text-pad" colspan="4" id="FormTDEAHCBBA" type="ncell" width="">
+        <MSESControl CaptionId="VR.TravellerDetails" class="view-text-pad" type="label" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35">
+      <Cell id="Cell1" type="ncell" width="22%">
+        <MSESControl CaptionId="VehicleRegistration.AuthorizationType" class="form_field_label" id="fieldlabel1" type="label" />
+      </Cell>
+      <Cell colspan="3" id="Cell2" type="ncell">
+        <MSESControl Checked="no" id="IsAuthorization" name="AuthorizationType" OnClick="setVehCertFields('A');" ReadOnly="no" SourceNode="data.VehAuthFormsrecords.VehAuthForms" type="radio" value="" />
+        <MSESControl CaptionId="VR.VehAuth" class="form_field_label" id="fieldlabel2" type="label" />
+        <MSESControl Checked="no" id="IsCertificate" name="AuthorizationType" OnClick="setVehCertFields('C');" ReadOnly="no" SourceNode="data.VehAuthFormsrecords.VehAuthForms" type="radio" value="" />
+        <MSESControl CaptionId="VehicleRegistration.VehicleCertificate" class="form_field_label" id="fieldlabel3" type="label" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35" id="TicketAndAuthority">
+      <Cell id="Cell5" type="ncell" width="22%">
+        <MSESControl CaptionId="VehicleRegistration.TicketNumber" class="form_field_label" id="fieldlabel4" type="label" />
+      </Cell>
+      <Cell colspan="1" id="CellTicketNumber" type="ncell">
+        <MSESControl Attribute="TicketNumber" id="TicketNumber" InputCorrectFormatMessage="" InputRequiredMessage="SiteFormErrors.TickNoReq" MaxLength="50" name="TicketNumber" ReadOnly="no" Required="no" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell id="Cell7" type="ncell" width="">
+        <MSESControl CaptionId="VehicleRegistration.IssuingAuthority" class="form_field_label" id="fieldlabel5" type="label" />
+      </Cell>
+      <Cell id="CellIssuingAuthority" type="ncell">
+        <MSESControl Attribute="IssuingAuthority" id="IssuingAuthority" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="SiteFormErrors.IssAuthReq" MaxLength="50" name="IssuingAuthority" ReadOnly="no" Required="no" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35">
+      <Cell type="ncell" width="">
+        <MSESControl CaptionId="VR.VAFormNo" class="form_field_label" type="label" />
+      </Cell>
+      <Cell type="ncell">
+        <MSESControl Attribute="VehAuthFormNo" id="VehAuthFormNo" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="VR.VehiclePlateNumberReq" MaxLength="50" name="VehAuthFormNo" ReadOnly="yes" Required="no" size="20" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell type="ncell" width="">
+        <MSESControl CaptionId="main.Date" class="form_field_label" type="label" />
+      </Cell>
+      <Cell type="ncell">
+        <MSESControl Attribute="VehAuthFormDate" id="VehAuthFormDate" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="VR.FormDateRequired" MaxLength="10" name="VehAuthFormDate" ReadOnly="yes" Required="no" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="date" type="text" />
+        <MSESControl CaptionId="" class="mcCalendarButton" id="VehAuthFormDateDatePicker" name="VehAuthFormDateDatePicker" OnClick="ShowFloatCalendar('VehAuthFormDate')" type="button" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35">
+      <Cell type="ncell" width="">
+        <MSESControl CaptionId="VR.VehiclePlateNumber" class="form_field_label" type="label" />
+      </Cell>
+      <Cell type="ncell">
+        <MSESControl Attribute="PlateNo" id="PlateNo" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="VR.VehiclePlateNumberReq" MaxLength="20" name="PlateNo" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell type="ncell" width="">
+        <MSESControl CaptionId="VR.place" class="form_field_label" id="LabelEABLCBBB" type="label" />
+      </Cell>
+      <Cell type="ncell">
+        <MSESControl Attribute="Name" id="Name" InputRequiredMessage="SiteFormErrors.placeReq" name="" ReadOnly="yes" Required="yes" size="20" SourceNode="data.VehAuthFormsrecords.Locationsrecords.Locations" SubType="text" type="text" />
+        <MSESControl CaptionId="" id="countrybrowsebutton" name="countrybrowsebutton" OnClick="setParameter('profileid','City');LockupScreen(this.form.name,'CityLookUpList','ViewLocationType', ProfileField('City.IsLocal')+'=N\'y\'' + 'and 1=2',700,385,true,false);&#xA;&#xA;//setParameter('profileid','City');LockupScreen(this.form.name,'CityLookUpList','ViewLocationType',ProfileField('City.IsLocal')+'=N\'y\'',700,385,true,false);&#xA;&#xA;" ToolTip="common.browse" type="button" class="mcBrowseButton" />
+        <MSESControl Attribute="LocationId" id="LocationId" name="" SourceNode="data.VehAuthFormsrecords.VehAuthForms" type="hidden" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35" id="DriverRow1">
+      <Cell width="">
+        <MSESControl CaptionId="VR.DriverName" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="cellDriverName" type="ncell">
+        <MSESControl Attribute="DriverName" id="DriverName" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="SiteFormErrors.DriverNameRequired" MaxLength="100" name="DriverName" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.IDType" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="CellVehicleGoodsFor" type="ncell">
+        <MSESControl Attribute="IdTypeId" id="VehicleGoodsFor" InputCorrectFormatMessage="" InputRequiredMessage="SiteFormErrors.IDTypeReq" name="PassengerDocType" NameAttribute="Description" OnChange="" PrimeAttribute="TypeId" Prompt="Passenger.SelectDocType" Required="yes" SelectId="PassengerDocType" size="1" SourceNode="data.VehAuthFormsrecords.VehAuthForms" Style="width:166" SubType="text" type="select" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35" id="DriverRow2">
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.IDNo" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="cellIdNumber" type="ncell">
+        <MSESControl Attribute="IdNumber" id="IdNumber" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="SiteFormErrors.IDNumReq" MaxLength="30" name="IdNumber" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="common.status" class="form_field_label" id="label1" Style="border:1;text-align:left;" type="label" />
+      </Cell>
+      <Cell type="ncell">
+        <MSESControl Attribute="StateName" CaptionId="" class="view-text-redbold" id="StateName" SourceNode="data.VehAuthFormsrecords.WorkflowItemStatesrecords.WorkflowItemStates" Style="border:1;text-align:left;" type="label" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray id="OwnerHeader">
+      <Cell colspan="4" type="ncell">
+        <MSESControl CaptionId="VR.OwnerInfo" class="view-text-pad" type="label" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35" id="OwnerDetail1">
+      <Cell colspan="">
+        <MSESControl CaptionId="VR.OwnerName" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="cellOwnerName" type="ncell" width="25%">
+        <MSESControl Attribute="OwnerName" id="OwnerName" InputCorrectFormatMessage="" InputRequiredMessage="SiteFormErrors.OwnerReq" MaxLength="100" name="OwnerName" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.IDType" class="form_field_label" type="label" />
+      </Cell>
+      <Cell class="form_field_label" id="FormTDEADCABA" Style="" type="ncell" width="">
+        <MSESControl Attribute="OwnerIdType" id="OwnerIdType" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="SiteFormErrors.IDTypeReq" name="OwnerIdType" NameAttribute="Description" OnChange="" PrimeAttribute="TypeId" Prompt="Passenger.SelectDocType" Required="yes" SelectId="PassengerDocType" size="1" SourceNode="data.VehAuthFormsrecords.VehAuthForms" Style="width:166" SubType="text" type="select" />
+        <MSESControl border="1" height="10" ImageDir="normal" ImageUrl="Client/Themes/Blue/Images/spacer.gif" src="http://localhost/MicroClearKuwait/Client/Themes/Blue/Images/Client/Themes/Blue/Images/spacer.gif" type="space" width="10" />
+        <MSESControl Attribute="IdTypeDetails" id="txtIdTypeDetails" InputCorrectFormatMessage="" InputRequiredMessage="" MaxLength="50" name="txtIdTypeDetails" ReadOnly="no" Required="no" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35" id="OwnerDetail2">
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.IDNo" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="cellOwnerIdNo" type="ncell" width="25%">
+        <MSESControl Attribute="OwnerIdNo" id="OwnerIdNo" InputCorrectFormatMessage="" InputRequiredMessage="SiteFormErrors.IDNumReq" MaxLength="30" name="OwnerIdNo" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell colspan="">
+        <MSESControl CaptionId="VR.DateOfID" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="FormTDEADCABB" Style="" type="ncell">
+        <MSESControl Attribute="DateOfId" class="textbox" id="DateOfId" name="DateOfId" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="date" type="text" />
+        <MSESControl CaptionId="" class="mcCalendarButton" id="DateOfIdDatePicker" name="DateOfIdDatePicker" OnClick="ShowFloatCalendar('DateOfId')" type="button" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray>
+      <Cell colspan="4" type="ncell">
+        <MSESControl CaptionId="VR.VehicleDetails" class="view-text-pad" type="label" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35">
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.Make" class="form_field_label" type="label" />
+      </Cell>
+      <Cell type="ncell" width="25%">
+        <MSESControl Attribute="VehicleMake" id="VehicleMake" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="VR.MakeReq" MaxLength="50" name="VehicleMake" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell colspan="">
+        <MSESControl CaptionId="VR.VehicleType" class="form_field_label" type="label" />
+      </Cell>
+      <Cell type="ncell" width="">
+        <MSESControl Attribute="VehicleTypeId" id="VehicleTypeId" InputCorrectFormatMessage="" InputRequiredMessage="SiteFormErrors.VehTypeReq" name="VehicleTypeId" NameAttribute="Description" OnChange="" PrimeAttribute="TypeId" Prompt="VR.SelectVehicleType" Required="yes" SelectId="VehicleType" size="1" SourceNode="data.VehAuthFormsrecords.VehAuthForms" Style="width:166" SubType="text" type="select" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35">
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.Model" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="cellModel" type="ncell" width="">
+        <MSESControl Attribute="Model" id="Model" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="VR.ModelReq" MaxLength="10" name="Model" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.EngineNo" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="" type="ncell">
+        <MSESControl Attribute="EngineNo" id="EngineNo" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="SiteFormErrors.engineReq" MaxLength="50" name="EngineNo" ReadOnly="no" Required="yes" size="50" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35">
+      <Cell type="ncell" width="">
+        <MSESControl CaptionId="VR.ChasisNo" class="form_field_label" type="label" />
+      </Cell>
+      <Cell type="ncell">
+        <MSESControl Attribute="ChasisNo" id="ChasisNo" InputCorrectFormatMessage="" InputRequiredMessage="SiteFormErrors.chasisReq" MaxLength="50" name="ChasisNo" OnChange="" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" Style="width:166" SubType="text" type="text" />
+      </Cell>
+      <Cell type="ncell" width="">
+        <MSESControl CaptionId="VR.Color" class="form_field_label" type="label" />
+      </Cell>
+      <Cell id="" type="ncell">
+        <MSESControl Attribute="Color" id="Color" InputCorrectFormatMessage="" InputRequiredMessage="SiteFormErrors.ColorReq" MaxLength="20" name="Color" ReadOnly="no" Required="yes" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray height="35" id="AllowedTypeDate">
+      <Cell colspan="">
+        <MSESControl CaptionId="VR.AllowedToTrvl" class="form_field_label" type="label" />
+      </Cell>
+      <Cell colspan="" type="ncell" width="">
+        <MSESControl Attribute="TravelTimes" Checked="yes" id="yes" name="TravelTimes" ReadOnly="no" SourceNode="data.VehAuthFormsrecords.VehAuthForms" type="radio" value="s" />
+        <MSESControl CaptionId="VR.Single" class="form_field_label" type="label" />
+        <MSESControl height="20" type="space" width="6" />
+        <MSESControl Attribute="TravelTimes" Checked="no" id="no" name="TravelTimes" ReadOnly="no" SourceNode="data.VehAuthFormsrecords.VehAuthForms" type="radio" value="m" />
+        <MSESControl CaptionId="VR.Multiple" class="form_field_label" type="label" />
+      </Cell>
+      <Cell colspan="" type="ncell">
+        <MSESControl CaptionId="VR.TravelUpto" class="form_field_label" type="label" /> 
+      </Cell>
+      <Cell colspan="" id="" type="ncell" width="">
+        <MSESControl Attribute="TravelUpto" class="textbox" id="TravelUpto" name="TravelUpto" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="date" type="text" />
+        <MSESControl CaptionId="" class="mcCalendarButton" id="TravelUptoDatePicker" name="TravelUptoDatePicker" OnClick="ShowFloatCalendar('TravelUpto')" type="button" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray id="StampRow1">
+      <Cell colspan="4" type="ncell">
+        <MSESControl CaptionId="sad.StampCollection" class="view-text-pad" type="label" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray id="StampRow2">
+      <Cell>
+        <MSESControl CaptionId="payment.ReceiptNo" class="form_field_label" type="label" />
+      </Cell>
+      <Cell>
+        <MSESControl Attribute="KNetReceiptNo" id="KNetReceiptNo" InputCorrectFormatMessage="SiteFormErrors.errType1" InputRequiredMessage="payment.paymentnumberreq" MaxLength="15" name="KNetReceiptNo" ReadOnly="no" Required="no" size="30" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="text" type="text" />
+      </Cell>
+      <Cell>
+        <MSESControl CaptionId="Receipts.ReceiptDate" class="form_field_label" type="label" />
+      </Cell>
+      <Cell>
+        <MSESControl Attribute="ReceiptDate" id="ReceiptDate" InputCorrectFormatMessage="SiteFormErrors.errdateFormat" InputRequiredMessage="" MaxLength="10" name="ReceiptDate" Required="no" size="25" SourceNode="data.VehAuthFormsrecords.VehAuthForms" SubType="date" type="text" />
+        <MSESControl CaptionId="" class="mcCalendarButton" id="dateDatePicker" name="dateDatePicker" OnClick="ShowFloatCalendar('ReceiptDate')" type="button" />
+      </Cell>
+    </HorizontalArray>
+    <HorizontalArray id="StampRow3">
+      <Cell>
+        <MSESControl CaptionId="payment.paymenttype" class="form_field_label" type="label" />
+      </Cell>
+      <Cell colspan="">
+        <MSESControl Attribute="PaymentMethod" id="paymentmethod" InputCorrectFormatMessage="" InputRequiredMessage="" name="paymentmethod" NameAttribute="Description" PrimeAttribute="TypeId" Prompt="payment.promptpaytype" Required="no" SelectId="PaymentTypes" size="1" SourceNode="data.VehAuthFormsrecords.VehAuthForms" OnChange=""  Style="width:167" SubType="text" type="select" />
+      </Cell>
+      <Cell>
+        <MSESControl CaptionId="payment.ReceiptAmount" class="form_field_label" type="label" />
+      </Cell>
+      <Cell>
+        <MSESControl Attribute="" id="ReceiptAmt" InputCorrectFormatMessage="" InputRequiredMessage="" MaxLength="15" name="ReceiptAmt" ReadOnly="yes" Required="no" size="30" SourceNode="" SubType="text" type="text" />
+      </Cell>
+    </HorizontalArray>
+  </ControlSet>
+  <ControlSet type="formfooter">
+    <HorizontalArray>
+      <Cell align="center" type="ncell">
+        <MSESControl action="SaveNewVehicleAuthorizationForm" CaptionId="common.createnew" id="SaveNewVehAuthFormss" name="SaveNewVehAuthFormss" OnClick="fnSave('SaveNewVehicleAuthorizationForm')" ToolTip="common.createnew" type="button" />
+        <!--<MSESControl action="SaveVehicleAuthorizationForm" CaptionId="common.save" id="SaveVehAuthFormss" name="SaveVehAuthFormss" OnClick="fnSave('SaveVehicleAuthorizationForm')" ToolTip="common.save" type="submit" />-->
+        <MSESControl action="AddToMCPayments" class="mcbutton" CaptionId="payment.addtopayment" id="PayReceiptamt" name="PayReceiptamt" OnClick="CheckForPaymentFields()" ToolTip="payment.addtopayment" type="button" />
+        <MSESControl action="SaveVehicleAuthorizationForm" CaptionId="common.save" id="SaveVehAuthFormss" name="SaveVehAuthFormss" OnClick="fnSave('SaveVehicleAuthorizationForm')" ToolTip="common.save" type="button" />
+        <MSESControl action="ListVehicleAuthorizationForm" CaptionId="common.cancel" id="cancel" name="cancel" OnClick="fnCancel();" ToolTip="common.cancel" type="submit" />
+      </Cell>
+    </HorizontalArray>
+  </ControlSet>
+  <Script language="javascript">
+
+    function CheckForPaymentFields()
+    {
+      var frm=document.forms["VehAuthFormsFr"];
+      if(HtmlElementById('KNetReceiptNo').value == '')
+      {
+         ShowFormException(frm.formexception.value,msgDictionary('VehAuthRecNo'),'KNetReceiptNo');
+         return false;
+      }
+      
+      if(HtmlElementById('ReceiptDate').value == '')
+      {
+        ShowFormException(frm.formexception.value,msgDictionary('VehAuthRecDate'),'ReceiptDate');
+        return false;
+      }
+      
+      if( HtmlElementById('paymentmethod').options.selectedIndex == 0)
+      {
+         ShowFormException(frm.formexception.value,msgDictionary('VehAuthKnet'),'paymentmethod');
+         return false;
+      }     
+        setParameterList(global_arrRegParameters, Array('', 'AddToMCPayments',getParameter('actioncriteria',''),getParameter('actionid',''),getParameter('actioncriteria','') , 'VehAuthFormsFrPg', ''));
+        pageSubmit(frm, false);
+    }
+
+    function fnCancel()
+    {
+    if( MCgetAttribute('actionservice/actioncontrol/@profileid','') == 'List')
+    setParameterList(global_arrRegParameters, Array('','ListVehicleAuthorizationForm','','','','VehAuthFormsLsPg',''));
+    else
+    setParameterList(global_arrRegParameters, Array('','ViewVehicleAuthorizationForm',getParameter('actioncriteria'),'','','VehAuthFormsVwPg',''));
+    pageSubmit(this.form,true);
+    }
 
 
+    function fnSave(action)
+    {
+    var frm=document.forms['VehAuthFormsFr'];
+    var AuthType = frm.AuthType.value;
+    if(AuthType == 'A')
+    {
+    var dt=new Date();
+    var oneYrAfterDt=dt.getDate()+'-'+(dt.getMonth()+1)+'-'+(dt.getYear()+1);
+    if (UserFormatDaysDiff(frm.TravelUpto.value, oneYrAfterDt) > 365 || bCompareDate(frm.TravelUpto.value,'&gt;',oneYrAfterDt))
+    {
+    ShowFormException(frm.formexception.value,msgDictionary('errTravelUptoDt'),'TravelUpto');frm.TravelUpto.focus();
+    return false
+    }
+    }
+    if(action=='SaveNewVehicleAuthorizationForm')
+    setParameterList(global_arrRegParameters, Array('','SaveNewVehicleAuthorizationForm','','ViewVehicleAuthorizationForm',ProfileField('VehAuthForms.VehAuthFormId')+'=\''+MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/@VehAuthFormId','text') +'\'','VehAuthFormsVwPg',''));
+    else
+    setParameterList(global_arrRegParameters, Array('','SaveVehicleAuthorizationForm','','ViewVehicleAuthorizationForm',getParameter('actioncriteria'),'VehAuthFormsVwPg',''));
+    pageSubmit(frm,false);
+    }
 
-- frontend library to generate the angular pages basedon xml pubpages (keep the captions, methods, strcutre, attributes, params, clicks, ordering, etc.)
-- try to reuse all current avialable resoruces like transalations, methods => to focus on other tasks
-- check how can we execute the javascript code directly in the angular*
-- prepare the initial work to be ready for the automation process (likethe translations and the captions, etc)
-- show that you are ready and thinking of the automation part
+   function EnableDisableCtrls(frmname) 
+   {
+	      var frm = document.forms[frmname];
+	      var sStateId = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/@StateId', '');
+	      var sMode = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/@ModeOfCreation', '');
+	      var sTravelTimes = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/@TravelTimes', '');
+        
+        var sVehCreatedDate = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/@VehCreatedDate', '');
+        //var sVehDate = sVehCreatedDate.split('T')[0];
+        //sVehDate = sVehDate.split('-')[2]+'-'+sVehDate.split('-')[1]+'-'+sVehDate.split('-')[0];
+        var sDateFlag='1';
+        //if(bCompareDate(sVehCreatedDate,'&lt;',VACutOffDate))
+        if ((sVehCreatedDate &lt; VACutOffDate) || sVehCreatedDate =="")
+        {
+          sDateFlag = '0';
+        }
+        
+	      var sMCPaymentNode = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/MCPaymentsVArecords/@TotalRecordsFetched', '0');
+	      if (frm.AuthType.value == 'A' || frm.AuthType.value == '') 
+        {
+		      frm.IsAuthorization.checked = true;
+		      TicketAndAuthority.style.display = 'none';
+		      if (frm.AuthType.value == '')
+			      frm.AuthType.value = 'A';
+	      } 
+        else 
+        {
+		      frm.IsCertificate.checked = true;
+		      TicketAndAuthority.style.display = '';
+	      }
+	      setRequiredFields();
+	      DisableName(frm);
+	      if (frm.AuthType.value == 'C') 
+        {
+		      if (HtmlElementById("StampRow1") != null)
+			      HtmlElementById("StampRow1").style.display = 'none';
 
-what has been auto generated 
-what can be auto generated
+		      if (HtmlElementById("StampRow2") != null)
+			      HtmlElementById("StampRow2").style.display = 'none';
 
-to note that there are other parts that need work but can be done on the upgrade process as it was not need during the poc but has been covered and studied (we have other parts that not covered in the poc but will be covered in the development
+		      if (HtmlElementById("StampRow3") != null)
+			      HtmlElementById("StampRow3").style.display = 'none';
+	      }
+	      if (frm.AuthType.value == 'A') 
+        {
+		      if (sDateFlag == '1' &amp;&amp; (sMode == 'Manual' || sMode == 'eServices') &amp;&amp; sStateId == 'VehAuthFrmSubmittedState' &amp;&amp; parseInt(sMCPaymentNode) == 0) 
+          {
+			        if (frm.PayReceiptamt != null)
+				        frm.PayReceiptamt.style.display = '';
+        
+               $("input[type=text]").prop('disabled', true);          
+                  $("select").prop("disabled", true);
+                  $("input[type=radio]").prop('disabled', true); 
+                  $("input[class=mcCalendarButton]").prop('disabled', true); 
+                  $("input[class=mcBrowseButton]").prop('disabled', true); 
 
-** logout implemenation  ** 
-** take the dictionary from Gopi from the prod for the menu and the labels **
+			        if (HtmlElementById("StampRow1") != null)
+				        HtmlElementById("StampRow1").style.display = '';
 
----------------------------------------------------------------
-TODO in the code (enhancements):
-1- add the page id using the serliazer to be read in the service doc service auto
-2- move the pagination and the sorting to be in a shared service and send to the service doc service (CreatePageServiceDocument) to be added auto and all other data that prepared manually
-3- merge the pagination and the sort in one method (two param) and check them to do the required action and generate the required output
-4- split the dtos of the pagination and the sorting in the quiries in 2 objects
-5- to check with mc team in case of submit any form, should we get the domain data to do backend validation or they handle this from their side
-6- update the parser to return camel case for the angular only
-7- make the create data node to use reflection to create the object node from the c# class and from the attributes
---------------------------------------------------------------------------
+			        if (HtmlElementById("StampRow2") != null)
+				        HtmlElementById("StampRow2").style.display = '';
 
+			        if (HtmlElementById("StampRow3") != null)
+				        HtmlElementById("StampRow3").style.display = '';
 
-Ahmed Tasks:
-1- study a way to generate Angular pages (html, ts,cs) from xml and javascript
-2- staudy a way to execute JS in the Angualr directly
-3- study a way to generate the front-end page behaviour and validations 
-4- study a way to use the MC resoruces using the caption ids
-
-
-Outputs:
-1- doable
-2- accurany %
-3- needed modifications (automation %, manual work %)
-
-
-********************************************************************************
-
-How to work
-1- understand the page business
-2- implement the page design in html and angular => possibilty of partail automation 
-3- implement the front-end page behaviour => manual work + automation
-4- convert the XML to JSON c# object using the API (receive the xml and return the c# object) => can use service doc xml or PubPAge XML (preferred)
-5- check if there are any data retrived in the html file not are in the sd to be added to the extra data (htmlNodes) to be fetched from the html on the post call => Manual process
-6- agree on the DTO between the angular and the API => automated
-7- implement the api and the command/query
-8- add any server-side validations on the command and the query => automation
-9- define the page id and the page action id that should be called => automated
-10- impelement the handler using the predefined and shared services to prepare the service document
-11- add any custom changes on the service document (like search section, sorting, pagination) => all can be moved to be shared as well but need to be called => can be automated.
-12- test the api => if worked, then Ok, else:
-13- compare the generated XML by the layer with the original XML from the MC APP and find the differences (ignore the nodes and attributes orders as they are not matters)=> Use API like Claude 
-14- Apply the differences on the api handler
-15- test the changes
+			        if (HtmlElementById("btnDelete") != null)
+				        HtmlElementById("btnDelete").style.display = 'none';
+                
+                 if (HtmlElementById('KNetReceiptNo') != null)
+					          HtmlElementById('KNetReceiptNo').disabled = false;
+				          if (HtmlElementById('ReceiptDate') != null)
+					          HtmlElementById('ReceiptDate').disabled = false;
+				          if (HtmlElementById('dateDatePicker') != null)
+					          HtmlElementById('dateDatePicker').disabled = false;
+				          if (HtmlElementById('paymentmethod') != null)
+					          HtmlElementById('paymentmethod').disabled = false;
+				          if (HtmlElementById('ReceiptAmt') != null)
+					          HtmlElementById('ReceiptAmt').disabled = true;
 
 
-Notes:
-1- some handlers response can be complex object of the service document and other extra data if ther eare data retrieved in the html and are not the service document
-2- some data in the post should not be filled from the front-end even that it is in the xml, and it should be filled from the api hub for security reasons like form date. => manual work to be considered
+			        if (sTravelTimes == 'm') 
+              {
+				        if (HtmlElementById("ReceiptAmt") != null)
+					        HtmlElementById("ReceiptAmt").value = '1.500';
+			        } 
+              else if (sTravelTimes == 's') 
+              {
+				        if (HtmlElementById("ReceiptAmt") != null)
+					        HtmlElementById("ReceiptAmt").value = '1.000';
+			        }
+		      } 
+          else if (sDateFlag == '1' &amp;&amp; (sMode == 'Manual' || sMode == 'eServices') &amp;&amp; sStateId == 'VehAuthFrmSubmittedState' &amp;&amp; parseInt(sMCPaymentNode) &gt; 0) 
+          {
+			          if (frm.PayReceiptamt != null)
+				          frm.PayReceiptamt.style.display = 'none';
+        
+                $("input[type=text]").prop('disabled', true); 
+                $("input[type=radio]").prop('disabled', true); 
+                $("select").prop("disabled", true);
+                $("input[class=mcCalendarButton]").prop('disabled', true); 
+                $("input[class=mcBrowseButton]").prop('disabled', true);             
 
-***************************************************************
+			          var sPayMethod = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/MCPaymentsVArecords/MCPaymentsVA/@PaymentMethod', '');
+			          if (sPayMethod == '332294040') 
+                {
+				          if (HtmlElementById("StampRow1") != null)
+					          HtmlElementById("StampRow1").style.display = 'none';
 
-Document strcuture:
-1- Work Baseline Steps (how to work, quality of work, estimations, number of resrouces)
-2- Define the work quality points
-3- Estimations
-4- What can be done auto and what should be done manually 
+				          if (HtmlElementById("StampRow2") != null)
+					          HtmlElementById("StampRow2").style.display = 'none';
+
+				          if (HtmlElementById("StampRow3") != null)
+					          HtmlElementById("StampRow3").style.display = 'none';
+
+				          if (HtmlElementById("btnDelete") != null)
+					          HtmlElementById("btnDelete").style.display = 'none';                    
+                    
+			          } 
+                else 
+                {
+				          if (HtmlElementById('KNetReceiptNo') != null)
+					          HtmlElementById('KNetReceiptNo').disabled = true;
+				          if (HtmlElementById('ReceiptDate') != null)
+					          HtmlElementById('ReceiptDate').disabled = true;
+				          if (HtmlElementById('dateDatePicker') != null)
+					          HtmlElementById('dateDatePicker').disabled = true;
+				          if (HtmlElementById('paymentmethod') != null)
+					          HtmlElementById('paymentmethod').disabled = true;
+				          if (HtmlElementById('ReceiptAmt') != null)
+					          HtmlElementById('ReceiptAmt').disabled = true;
+
+				          if (sTravelTimes == 'm') 
+                  {
+					          if (HtmlElementById("ReceiptAmt") != null)
+						          HtmlElementById("ReceiptAmt").value = '1.500';
+				          } 
+                  else if (sTravelTimes == 's') 
+                  {
+					          if (HtmlElementById("ReceiptAmt") != null)
+						          HtmlElementById("ReceiptAmt").value = '1.000';
+				          }
+
+				          if (HtmlElementById("btnDelete") != null)
+					          HtmlElementById("btnDelete").style.display = '';
+                    
+                      var MCPaymentsRows = xmlServiceDocument.selectNodes('//MCPaymentsVA').length;
+                      if ( MCPaymentsRows &gt; 0 )
+                          {
+		                          for(i=0; i &lt; MCPaymentsRows; i++)
+		                          {
+                                  if(HtmlElementById('List_'+'VehAuthPaymentLs'+'_'+i+'_PrintReceipt') != null)
+					                          HtmlElementById('List_'+'VehAuthPaymentLs'+'_'+i+'_PrintReceipt').innerText='';
+                              }
+                          }
+			          }
+
+			          for (var j = 0; j &lt; sMCPaymentNode; j++) 
+                {
+				          var sPayMethod = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/MCPaymentsVArecords/MCPaymentsVA[' + j + ']/@PaymentMethod', '');
+				          if (sPayMethod == '332294040') 
+                  {
+					            var listContext_ids = HtmlElementById('List_VehAuthPaymentLs_' + j + '_').children[0].children[0].attributes['context_id'].nodeValue;
+					            $('#' + 'chk_' + listContext_ids + '_' + j).attr({
+						            "readonly" : true,
+						            "disabled" : true
+					            });
+				          }
+                }
+		      } 
+          else 
+          {
+			        if (frm.PayReceiptamt != null)
+				        frm.PayReceiptamt.style.display = 'none';
+
+			        if (HtmlElementById("StampRow1") != null)
+				        HtmlElementById("StampRow1").style.display = 'none';
+
+			        if (HtmlElementById("StampRow2") != null)
+				        HtmlElementById("StampRow2").style.display = 'none';
+
+			        if (HtmlElementById("StampRow3") != null)
+				        HtmlElementById("StampRow3").style.display = 'none';
+
+			        if (HtmlElementById("btnDelete") != null)
+				        HtmlElementById("btnDelete").style.display = 'none';
+                
+              $("#EnclRow_VehAuthPaymentLs_Table").hide(); 
+		      }
+	      }
+	      /*if (sStateId != 'VehAuthFrmStartState') 
+        {
+		      frm.IsAuthorization.disabled = true;
+		      frm.IsCertificate.disabled = true;
+		      frm.yes.disabled = true;
+		      frm.no.disabled = true;
+	      }*/
+    }
+
+
+    function DisableName(frm)
+    {
+    var sStateId = MCgetAttribute('data/VehAuthFormsrecords/VehAuthForms/@StateId','');
+
+    if(sStateId == 'VehAuthFrmSubmittedState'  &amp;&amp; (!IsRolesExist("VehicleCertificateIssuer")))
+	  	{
+		    frm.DriverName.disabled= true;
+		    frm.OwnerName.disabled= true;
+	  	}
+}
+
+
+  function setVehCertFields(AuthType)
+  {
+    var frm=document.forms['VehAuthFormsFr'].AuthType.value=AuthType;
+	if ( AuthType == 'C' )
+	{
+	    TicketAndAuthority.style.display='';
+	    AllowedTypeDate.style.display='none';
+		//OwnerHeader.style.display='none';
+	    //OwnerDetail1.style.display='none';
+	    //OwnerDetail2.style.display='none';
+		DriverRow1.style.display='none';
+		DriverRow2.style.display='none';
+	    setRequiredFields();
+	}
+	else if ( AuthType == 'A' )
+	{
+		DriverRow1.style.display='';
+		DriverRow2.style.display='';
+		
+	    TicketAndAuthority.style.display='none';
+	    OwnerHeader.style.display='';
+	    AllowedTypeDate.style.display='';
+	    OwnerDetail1.style.display='';
+	    OwnerDetail2.style.display='';
+	    setRequiredFields();
+	}
+  }
+  function setRequiredFields()
+    {
+		var frmObj = document.forms['VehAuthFormsFr'];
+		if ( frmObj.AuthType.value == 'A' )
+		 {
+		    MakeFieldRequired(frmObj,"IdNumber",HtmlElementById("cellIdNumber"));
+		    MakeFieldRequired(frmObj,"DriverName",HtmlElementById("cellDriverName"));
+		    MakeFieldOptional(frmObj,"Model",HtmlElementById("cellModel"));
+		    MakeFieldOptional(frmObj,"TicketNumber",HtmlElementById("CellTicketNumber"));	    
+            MakeFieldOptional(frmObj,"IssuingAuthority",HtmlElementById("CellIssuingAuthority"));
+
+
+		    MakeFieldRequired(frmObj,"IdNumber",HtmlElementById("cellIdNumber"));
+			MakeFieldRequired(frmObj,"VehicleGoodsFor",HtmlElementById("CellVehicleGoodsFor"));	
+		    MakeFieldRequired(frmObj,"DriverName",HtmlElementById("cellDriverName"));
+
+		    MakeFieldRequired(frmObj,"OwnerName",HtmlElementById("cellOwnerName"));
+		    MakeFieldRequired(frmObj,"OwnerIdType",HtmlElementById("FormTDEADCABA"));
+		    
+		    MakeFieldRequired(frmObj,"OwnerIdNo",HtmlElementById("cellOwnerIdNo"));
+		    MakeFieldRequired(frmObj,"DateOfId",HtmlElementById("FormTDEADCABB"));
+
+		 }
+		else 
+		 { 
+			MakeFieldRequired(frmObj,"TicketNumber",HtmlElementById("CellTicketNumber"));
+		    MakeFieldRequired(frmObj,"IssuingAuthority",HtmlElementById("CellIssuingAuthority"));
+			MakeFieldRequired(frmObj,"Model",HtmlElementById("cellModel"));
+			
+		    MakeFieldOptional(frmObj,"IdNumber",HtmlElementById("cellIdNumber"));
+			MakeFieldOptional(frmObj,"VehicleGoodsFor",HtmlElementById("CellVehicleGoodsFor"));	
+		    MakeFieldOptional(frmObj,"DriverName",HtmlElementById("cellDriverName"));
+		    
+		    MakeFieldRequired(frmObj,"OwnerName",HtmlElementById("cellOwnerName"));
+		    //MakeFieldOptional(frmObj,"OwnerName",HtmlElementById("cellOwnerName"));
+		    MakeFieldOptional(frmObj,"OwnerIdType",HtmlElementById("FormTDEADCABA"));
+		    
+		    MakeFieldOptional(frmObj,"OwnerIdNo",HtmlElementById("cellOwnerIdNo"));
+		    MakeFieldOptional(frmObj,"DateOfId",HtmlElementById("FormTDEADCABB"));
+		    
+		 }   
+    }	
+</Script>
+</Form>
